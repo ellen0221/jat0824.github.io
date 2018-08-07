@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>控制器--Controller | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Laravel基础," />
+  
+
+  <meta name="description" content="Request1234567891011121314151617181920212223242526272829303132333435public function request1(Request $request)    &amp;#123;        // 1、取值        echo $request-&amp;gt;input(&apos;name&apos;);        //对应url:http://lo">
+<meta name="keywords" content="Laravel基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="控制器--Controller">
+<meta property="og:url" content="http://yoursite.com/2018/08/06/控制器-Controller/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Request1234567891011121314151617181920212223242526272829303132333435public function request1(Request $request)    &amp;#123;        // 1、取值        echo $request-&amp;gt;input(&apos;name&apos;);        //对应url:http://lo">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-07T08:29:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="控制器--Controller">
+<meta name="twitter:description" content="Request1234567891011121314151617181920212223242526272829303132333435public function request1(Request $request)    &amp;#123;        // 1、取值        echo $request-&amp;gt;input(&apos;name&apos;);        //对应url:http://lo">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">-&gt;</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">-&gt;</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Request"><span class="toc-text">Request</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Session"><span class="toc-text">Session</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#session简介"><span class="toc-text">session简介</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Response"><span class="toc-text">Response</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#响应的常见类型"><span class="toc-text">响应的常见类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Middleware"><span class="toc-text">Middleware</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#中间件的作用"><span class="toc-text">中间件的作用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#其他小记-规格化时间"><span class="toc-text">其他小记:规格化时间</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-控制器-Controller" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">控制器--Controller</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.08.06</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Xj</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/学习/">学习</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h4 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">request1</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 1、取值</span></span><br><span class="line">        <span class="keyword">echo</span> $request-&gt;input(<span class="string">'name'</span>);</span><br><span class="line">        <span class="comment">//对应url:http://localhost:8001/api/request?name=xj</span></span><br><span class="line">        <span class="comment">//输出xj</span></span><br><span class="line">        <span class="keyword">echo</span> $request-&gt;input(<span class="string">'sex'</span>, <span class="string">'未知'</span>);  <span class="comment">//第二个参数为默认值</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>($request-&gt;has(<span class="string">'name'</span>))&#123;  <span class="comment">//判断是否存在name</span></span><br><span class="line">            <span class="keyword">echo</span> $request-&gt;input(<span class="string">'name'</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'无参数'</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $user = $request-&gt;all();    <span class="comment">//输出所有参数</span></span><br><span class="line">        dd($user);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2、判断请求类型</span></span><br><span class="line">        <span class="keyword">echo</span> $request-&gt;method();    <span class="comment">//返回当前请求类型</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>($request-&gt;isMethod(<span class="string">'GET'</span>)) &#123;   <span class="comment">//判断请求方法</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'yes'</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'no'</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $res = $request-&gt;ajax();</span><br><span class="line">        var_dump($res);</span><br><span class="line"></span><br><span class="line">        $res = $request-&gt;is(<span class="string">'api/share/*'</span>); <span class="comment">//判断路由url是否在share路径下;</span></span><br><span class="line">        dd($res);   <span class="comment">//若对应路由为Route::any('share/request', 'RequestController@request1');  url:http://localhost:8001/api/share/request 则返回true</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> $request-&gt;url();    <span class="comment">//输出当前url</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4><h6 id="session简介"><a href="#session简介" class="headerlink" title="session简介"></a>session简介</h6><ul>
+<li>由于HTTP协议是无状态的,所以session提供了一种保存用户数据的方法。</li>
+<li>Laravel默认使用”file”的Session驱动</li>
+<li>Session配置文件在 config/session.php 中</li>
+</ul>
+<p>######使用Session的两种方式</p>
+<p><strong>使用session前需要使用Startsession,在app\Http\Kernel.php中可以看到StartSession包含在web中间件中,所以对应的路由要加web中间件。</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Route::group([<span class="string">'middleware'</span> =&gt; [<span class="string">'web'</span>]], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    Route::any(<span class="string">'session1'</span>, <span class="string">'RequestController@session1'</span>);</span><br><span class="line">    Route::any(<span class="string">'session2'</span>, <span class="string">'RequestController@session2'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用session</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">session1</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 1. HTTP request session()</span></span><br><span class="line">        $request-&gt;session()-&gt;put(<span class="string">'key1'</span>, <span class="string">'value1'</span>);</span><br><span class="line">        <span class="keyword">echo</span> $request-&gt;session()-&gt;get(<span class="string">'key1'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. session()</span></span><br><span class="line">        session()-&gt;put(<span class="string">'key2'</span>, <span class="string">'value2'</span>);</span><br><span class="line">        <span class="keyword">echo</span> $request-&gt;session()-&gt;get(<span class="string">'key2'</span>);</span><br><span class="line">   </span><br><span class="line">        <span class="comment">//存储数据到session</span></span><br><span class="line">        session()-&gt;put(<span class="string">'key'</span>, <span class="string">'value'</span>);</span><br><span class="line">        <span class="comment">//获取session的值</span></span><br><span class="line">        session()-&gt;get(<span class="string">'key'</span>);</span><br><span class="line">            <span class="comment">//不存在则取默认值</span></span><br><span class="line">            session()-&gt;get(<span class="string">'key'</span>, <span class="string">'default'</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//以数组的形式存储数据</span></span><br><span class="line">        session()-&gt;put([<span class="string">'key4'</span> =&gt; <span class="string">'value4'</span>]);</span><br><span class="line">        <span class="keyword">echo</span> session()-&gt;get(<span class="string">'key4'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//把数据放到Session数组中</span></span><br><span class="line">        session()-&gt;push(<span class="string">'key'</span>, <span class="string">'xj'</span>);</span><br><span class="line">        session()-&gt;push(<span class="string">'key'</span>, <span class="string">'jx'</span>);</span><br><span class="line">        $res = session()-&gt;get(<span class="string">'key'</span>);</span><br><span class="line">        var_dump($res);     </span><br><span class="line">        <span class="comment">//输出:array(2) &#123; [0]=&gt; string(2) "xj" [1]=&gt; string(2) "jx" &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//从session中取出数据并删除</span></span><br><span class="line">        $res = session()-&gt;pull(<span class="string">'key'</span>, <span class="string">'default'</span>);</span><br><span class="line">        var_dump($res);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//取出所有数据</span></span><br><span class="line">        $res = session()-&gt;all();</span><br><span class="line">        dd($res);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//判断session中某个key是否存在</span></span><br><span class="line">        <span class="keyword">if</span>(session()-&gt;has(<span class="string">'key'</span>)) &#123;</span><br><span class="line">            $res = session()-&gt;all();</span><br><span class="line">            dd($res);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'no no no'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">         <span class="comment">//删除数据</span></span><br><span class="line">         session()-&gt;forget(<span class="string">'key4'</span>);</span><br><span class="line">         $res = session()-&gt;all();</span><br><span class="line">         dd($res);</span><br><span class="line">         </span><br><span class="line">         <span class="comment">//删除session中所有数据</span></span><br><span class="line">         session()-&gt;flush();</span><br><span class="line">         $res = session()-&gt;all();</span><br><span class="line">         dd($res);</span><br><span class="line">         </span><br><span class="line">         <span class="comment">//暂存数据(只能取出一次)</span></span><br><span class="line">         session()-&gt;flash(<span class="string">'key_flash'</span>, <span class="string">'value_flash'</span>);</span><br><span class="line">         <span class="keyword">echo</span> session()-&gt;get(<span class="string">'key_flash'</span>, <span class="string">'default'</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h4><h6 id="响应的常见类型"><a href="#响应的常见类型" class="headerlink" title="响应的常见类型"></a>响应的常见类型</h6><ul>
+<li>字符串</li>
+<li>视图</li>
+<li>Json</li>
+<li>重定向</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">response</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//响应json</span></span><br><span class="line">    $data = [</span><br><span class="line">        <span class="string">'statueCode'</span> =&gt; <span class="number">0</span>,</span><br><span class="line">        <span class="string">'statueMsg'</span> =&gt; <span class="string">'success'</span>,</span><br><span class="line">        <span class="string">'data'</span> =&gt; <span class="string">'xj'</span>,</span><br><span class="line">    ];</span><br><span class="line">    <span class="keyword">return</span> response()-&gt;json($data); </span><br><span class="line">    <span class="comment">// 输出: &#123;"statueCode":0,"statueMsg":"success","data":"xj"&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//重定向</span></span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">'api/session2'</span>);  <span class="comment">//重定向到session2方法的url中</span></span><br><span class="line">    <span class="comment">//带数据的重定向</span></span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">'api/session2'</span>)-&gt;with(<span class="string">'message'</span>, <span class="string">'flash数据'</span>);  </span><br><span class="line">    <span class="comment">//对应session2方法中: echo session()-&gt;get('message', 'default');  </span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用action()重定向</span></span><br><span class="line">    <span class="keyword">return</span> redirect()-&gt;action(<span class="string">'RequestController@session2'</span>)-&gt;with(<span class="string">'message'</span>, <span class="string">'flash data'</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 用route()重定向</span></span><br><span class="line">    <span class="keyword">return</span> redirect()-&gt;route(<span class="string">'session2'</span>)-&gt;with(<span class="string">'message'</span>, <span class="string">'flash data'</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重定向之返回上一级页面</span></span><br><span class="line">    <span class="keyword">return</span> redirect()-&gt;back();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h4><h6 id="中间件的作用"><a href="#中间件的作用" class="headerlink" title="中间件的作用"></a>中间件的作用</h6><ul>
+<li>过滤HTTP请求</li>
+</ul>
+<p>场景假设: 有一活动,在指定日期后开始,如果活动没开始,只能访问宣传页面</p>
+<ul>
+<li><p>新建中间件: 在 App\Http\Middleware 下新建中间件文件 Activity.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//前置操作</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(time() &lt; strtotime(<span class="string">'2017-08-08'</span>)) &#123;    <span class="comment">//若时间在2018-08-08日之前</span></span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">'activity1'</span>);       <span class="comment">//则重定向到activity1路由,即宣传页面</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $next($request);     <span class="comment">//否则执行next方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注册中间件: 在 App\Http\Kernel.php 文件中注册中间件(选择在routeMiddleware中添加,也可添加到全局中间件中)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $routeMiddleware = [</span><br><span class="line">    <span class="string">'auth'</span> =&gt; \Illuminate\Auth\Middleware\Authenticate::class,</span><br><span class="line">    <span class="string">'auth.basic'</span> =&gt; \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,</span><br><span class="line">    <span class="string">'bindings'</span> =&gt; \Illuminate\Routing\Middleware\SubstituteBindings::class,</span><br><span class="line">    <span class="string">'can'</span> =&gt; \Illuminate\Auth\Middleware\Authorize::class,</span><br><span class="line">    <span class="string">'guest'</span> =&gt; \App\Http\Middleware\RedirectIfAuthenticated::class,</span><br><span class="line">    <span class="string">'throttle'</span> =&gt; \Illuminate\Routing\Middleware\ThrottleRequests::class,</span><br><span class="line">    <span class="comment">//添加下面这行,即添加了activity中间件</span></span><br><span class="line">    <span class="string">'activity'</span> =&gt; \App\Http\Middleware\Activity::class,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用中间件: 在api.php文件中添加middleware</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//宣传页面路由</span></span><br><span class="line">Route::any(<span class="string">'activity1'</span>, <span class="string">'RequestController@activity1'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//活动页面路由</span></span><br><span class="line">Route::group([<span class="string">'middleware'</span> =&gt; [<span class="string">'activity'</span>]], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Route::any(<span class="string">'activity2'</span>, <span class="string">'RequestController@activity2'</span>);</span><br><span class="line">    Route::any(<span class="string">'activity3'</span>, <span class="string">'RequestController@activity3'</span>);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>中间件的前置和后置操作<br><strong>区别:前置操作是中间件的逻辑在请求执行前执行,后置操作则是中间件的逻辑在请求执行后执行</strong><br>所以前面新建的中间件就属于前置操作。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//后置操作</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $response = $next($request);    <span class="comment">//$next($request)是一个请求响应</span></span><br><span class="line">    <span class="keyword">echo</span> $response;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//逻辑</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'后置操作!'</span>;   <span class="comment">//则在输出$response后输出:后置操作!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="其他小记-规格化时间"><a href="#其他小记-规格化时间" class="headerlink" title="其他小记:规格化时间"></a>其他小记:规格化时间</h6><blockquote>
+<p>$time = date(‘Y-m-d H:i:s’, time());<br>//输出格式为2018-08-07 00:00:00</p>
+</blockquote>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">Xj</span>
+      <div class="donation-body">
+        <div class="tip text-center"></div>
+        <ul>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/08/05/视图-Blade模板/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
