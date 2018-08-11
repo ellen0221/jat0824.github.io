@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Composer使用 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Laravel高级," />
+  
+
+  <meta name="description" content="通过Composer安装laravel框架 1.通过Composer create-project 命令安装laravel   composer create-project laravel/laravel project_name –prefer-dist  2.通过laravel安装器安装laravel(需要手动添加环境变量)  composer global require “laravel">
+<meta name="keywords" content="Laravel高级">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Composer使用">
+<meta property="og:url" content="http://yoursite.com/2018/08/11/Composer使用/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="通过Composer安装laravel框架 1.通过Composer create-project 命令安装laravel   composer create-project laravel/laravel project_name –prefer-dist  2.通过laravel安装器安装laravel(需要手动添加环境变量)  composer global require “laravel">
+<meta property="og:updated_time" content="2018-08-11T06:35:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Composer使用">
+<meta name="twitter:description" content="通过Composer安装laravel框架 1.通过Composer create-project 命令安装laravel   composer create-project laravel/laravel project_name –prefer-dist  2.通过laravel安装器安装laravel(需要手动添加环境变量)  composer global require “laravel">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">-&gt;</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">-&gt;</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过Composer安装laravel框架"><span class="toc-text">通过Composer安装laravel框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Artisan控制台"><span class="toc-text">Artisan控制台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Laravel中的用户认证-Auth"><span class="toc-text">Laravel中的用户认证(Auth)</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Composer使用" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Composer使用</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.08.11</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Xj</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/学习/">学习</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="通过Composer安装laravel框架"><a href="#通过Composer安装laravel框架" class="headerlink" title="通过Composer安装laravel框架"></a>通过Composer安装laravel框架</h2><ul>
+<li>1.通过Composer create-project 命令安装laravel</li>
+</ul>
+<blockquote>
+<p>composer create-project laravel/laravel project_name –prefer-dist</p>
+<ul>
+<li>2.通过laravel安装器安装laravel(需要手动添加环境变量)</li>
+</ul>
+<p>composer global require “laravel/installer”<br>laravel new blog<br>vim ~/.bash_profile  //(环境变量添加)在终端执行该命令<br>//在该文件中添加: export PATH=~/.composer/vendor/bin</p>
+</blockquote>
+<h2 id="Artisan控制台"><a href="#Artisan控制台" class="headerlink" title="Artisan控制台"></a>Artisan控制台</h2><ul>
+<li>Artisan是laravel中自带的命令行工具,由强大的Symfony Console组件驱动,提供了一些对应用开发有帮助的命令</li>
+<li>Artisan使用</li>
+</ul>
+<blockquote>
+<p>//查看所有可用Artisan命令(list)<br>php artisan<br>php artisan list</p>
+<p>//查看命令的帮助信息(help)<br>php artisan help migrate</p>
+<p>//创建控制器<br>php artisan make:controller UserController</p>
+<p>//创建模型<br>php artisan make:model Info</p>
+<p>//创建中间件<br>php artisan make:middleware Activity</p>
+</blockquote>
+<h2 id="Laravel中的用户认证-Auth"><a href="#Laravel中的用户认证-Auth" class="headerlink" title="Laravel中的用户认证(Auth)"></a>Laravel中的用户认证(Auth)</h2><ul>
+<li>生成Auth所需文件<blockquote>
+<p>php artisan make:auth  </p>
+</blockquote>
+</li>
+</ul>
+<p>可在路由中看到:    访问home即可看到用户登录界面<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Auth::routes();</div><div class="line">Route::get(<span class="string">'home'</span>, <span class="string">'HomeController@index'</span>);</div></pre></td></tr></table></figure></p>
+<p>工作目录下执行  </p>
+<blockquote>
+<p>php artisan migrate</p>
+</blockquote>
+<p>即可创建相应的数据表,再次进入用户登录界面即可进行注册登录操作</p>
+<ul>
+<li>数据迁移</li>
+</ul>
+<ol>
+<li>新建一个students表的迁移文件</li>
+</ol>
+<blockquote>
+<p>php artisan make:migration create_students_table –create=students</p>
+</blockquote>
+<p>–table 和 –create 参数可以用来指定数据表名称,以及迁移文件是否要建立新的数据表。</p>
+<ol>
+<li>生成模型的同事生成迁移文件</li>
+</ol>
+<blockquote>
+<p>php artisan make:model Student -m</p>
+</blockquote>
+<p>在 database/migrations 目录下找到相应的迁移文件并修改:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">up</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;   <span class="comment">//创建students表</span></div><div class="line">    Schema::create(<span class="string">'students'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(Blueprint $table)</span> </span>&#123;</div><div class="line">        $table-&gt;increments(<span class="string">'id'</span>);</div><div class="line">        $table-&gt;string(<span class="string">'name'</span>);</div><div class="line">        $table-&gt;integer(<span class="string">'age'</span>)-&gt;unsigned()-&gt;deafult(<span class="number">0</span>);</div><div class="line">        $table-&gt;integer(<span class="string">'sex'</span>)-&gt;unsigned()-&gt;deafult(<span class="number">10</span>);</div><div class="line">        $table-&gt;integer(<span class="string">'created_at'</span>)-&gt;deafult(<span class="number">0</span>);</div><div class="line">        $table-&gt;integer(<span class="string">'updated_at'</span>)-&gt;deafult(<span class="number">0</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在工作目录下执行</p>
+<blockquote>
+<p>php artisan migrate</p>
+</blockquote>
+<p>即可在本地数据库创建students表</p>
+<ul>
+<li>数据填充</li>
+</ul>
+<ol>
+<li>创建一个填充文件,并完善填充文件 文件目录: database/seeds</li>
+</ol>
+<blockquote>
+<p>php artisan make:seeder StudentTableSeeder</p>
+</blockquote>
+<p>创建成功后在run()方法中插入数据<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">//批量插入数据</span></div><div class="line">    DB::table(<span class="string">'students'</span>)-&gt;insert([</div><div class="line">        [<span class="string">'name'</span> =&gt; <span class="string">'user1'</span>, <span class="string">'age'</span> =&gt; <span class="number">18</span>],</div><div class="line">        [<span class="string">'name'</span> =&gt; <span class="string">'user2'</span>, <span class="string">'age'</span> =&gt; <span class="number">19</span>],</div><div class="line">    ]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>执行单个填充文件</li>
+</ol>
+<blockquote>
+<p>php artisan db:seed –class=StudentTableSeeder</p>
+</blockquote>
+<ol>
+<li>批量执行填充文件</li>
+</ol>
+<blockquote>
+<p>php artisan db:seed<br>//需要在 database/seeds/DatabaseSeeder.php 中引入该填充文件:<br>    $this-&gt;call(StudentTableSeeder::class);</p>
+</blockquote>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">Xj</span>
+      <div class="donation-body">
+        <div class="tip text-center"></div>
+        <ul>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/08/08/Laravel表单/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
