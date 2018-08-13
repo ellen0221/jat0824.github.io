@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Laravel框架常用功能 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Laravel高级," />
+  
+
+  <meta name="description" content="文件上传 Laravel文件系统是基于Frank de Jonge的Flysystemk扩展包    提供了简单的接口,可以操作本地端空间、Amazon S3、Rackspace Cloud Storage  可以非常简单的切换不同保存方式,但仍使用相同的API操作   配置文件:  config/filesystems.php  在其中添加磁盘:  ‘uploads’ =&amp;gt; [&amp;nbsp;">
+<meta name="keywords" content="Laravel高级">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel框架常用功能">
+<meta property="og:url" content="http://yoursite.com/2018/08/12/Laravel框架常用功能/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="文件上传 Laravel文件系统是基于Frank de Jonge的Flysystemk扩展包    提供了简单的接口,可以操作本地端空间、Amazon S3、Rackspace Cloud Storage  可以非常简单的切换不同保存方式,但仍使用相同的API操作   配置文件:  config/filesystems.php  在其中添加磁盘:  ‘uploads’ =&amp;gt; [&amp;nbsp;">
+<meta property="og:updated_time" content="2018-08-13T08:59:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel框架常用功能">
+<meta name="twitter:description" content="文件上传 Laravel文件系统是基于Frank de Jonge的Flysystemk扩展包    提供了简单的接口,可以操作本地端空间、Amazon S3、Rackspace Cloud Storage  可以非常简单的切换不同保存方式,但仍使用相同的API操作   配置文件:  config/filesystems.php  在其中添加磁盘:  ‘uploads’ =&amp;gt; [&amp;nbsp;">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">-&gt;</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">-&gt;</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件上传"><span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#邮件发送"><span class="toc-text">邮件发送</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存"><span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误与日志"><span class="toc-text">错误与日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#队列"><span class="toc-text">队列</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Laravel框架常用功能" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Laravel框架常用功能</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.08.12</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Xj</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/学习/">学习</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><ul>
+<li><p>Laravel文件系统是基于Frank de Jonge的Flysystemk扩展包  </p>
+</li>
+<li><p>提供了简单的接口,可以操作本地端空间、Amazon S3、Rackspace Cloud Storage</p>
+</li>
+<li><p>可以非常简单的切换不同保存方式,但仍使用相同的API操作</p>
+</li>
+</ul>
+<p><strong>配置文件:</strong></p>
+<ul>
+<li>config/filesystems.php</li>
+</ul>
+<p>在其中添加磁盘:</p>
+<blockquote>
+<p>‘uploads’ =&gt; [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;’driver’ =&gt; ‘local’,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;’root’ =&gt; storage_path(‘app/uploads’),<br>],</p>
+</blockquote>
+<p>在控制器(StudentController)中写upload()方法,并添加相应路由<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">upload</span><span class="params">(Request $request)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">if</span> ($request-&gt;isMethod(<span class="string">'POST'</span>)) &#123;</div><div class="line"><span class="comment">//            var_dump($_FILES);</span></div><div class="line">            $file = $request-&gt;file(<span class="string">'source'</span>);   <span class="comment">//从前端获取文件信息</span></div><div class="line">            <span class="comment">//判断文件是否上传成功</span></div><div class="line">            <span class="keyword">if</span> ($file-&gt;isValid()) &#123;</div><div class="line">                <span class="comment">//获取原文件名</span></div><div class="line">                $originalName = $file-&gt;getClientOriginalName();</div><div class="line">                <span class="comment">//获取文件扩展名</span></div><div class="line">                $extension =  $file-&gt;getClientOriginalExtension();</div><div class="line">                <span class="comment">//获取文件类型</span></div><div class="line">                $type = $file-&gt;getClientMimeType();</div><div class="line">                <span class="comment">//获取临时文件绝对路径</span></div><div class="line">                $realPath = $file-&gt;getRealPath();</div><div class="line">                <span class="comment">//定义文件名</span></div><div class="line">                $filename = date(<span class="string">'Y-m-d-H-i-s'</span>, time()) . <span class="string">'-'</span> . uniqid() . <span class="string">'-'</span> . $extension;</div><div class="line">                <span class="comment">//规定保存到uploads磁盘,并用put()方法验证(第一个参数为文件名,第二个参数为文件)</span></div><div class="line">                $bool = Storage::disk(<span class="string">'uploads'</span>)-&gt;put($filename, file_get_contents($realPath));</div><div class="line"><span class="comment">//                var_dump($bool);</span></div><div class="line">                <span class="keyword">if</span> ($bool) &#123;</div><div class="line">                    <span class="keyword">return</span> redirect(<span class="string">'api/upload'</span>)-&gt;with(<span class="string">'success'</span>, <span class="string">'上传成功'</span>);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">return</span> redirect()-&gt;back()-&gt;with(<span class="string">'error'</span>, <span class="string">'上传失败'</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"><span class="comment">//            dd($file);</span></div><div class="line">            <span class="keyword">exit</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> view(<span class="string">'student.upload'</span>);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>新建视图(目录:resources/views/student/upload.blade.php)</p>
+<h2 id="邮件发送"><a href="#邮件发送" class="headerlink" title="邮件发送"></a>邮件发送</h2><ul>
+<li><p>Laravel的邮件功能基于热门的 SwiftMailer 函数库之上,提供了一个简洁的API</p>
+</li>
+<li><p>Laravel为SMTP、Mailgun、Mandrill、Amazon SES、PHP的mail函数、以及sendmail提供了驱动从而允许你快速通过本地或云服务发送邮件</p>
+</li>
+</ul>
+<p><strong>配置文件</strong></p>
+<blockquote>
+<p>config/mail.php</p>
+</blockquote>
+<p>在其中以及.env文件中修改对应的邮箱账号及密码:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">MAIL_DRIVER=smtp</div><div class="line">MAIL_HOST=smtp<span class="number">.163</span>.com</div><div class="line">MAIL_PORT=<span class="number">465</span></div><div class="line">MAIL_USERNAME=jat1014@<span class="number">163.</span>com</div><div class="line">MAIL_PASSWORD=xxxxxxxxx   <span class="comment">//注意这里的密码是设置开通stmp的授权码,不是邮箱密码</span></div><div class="line">MAIL_ENCRYPTION=ssl</div></pre></td></tr></table></figure></p>
+<p><strong>发送</strong></p>
+<blockquote>
+<p>Mail::raw()<br>Mail::send()</p>
+</blockquote>
+<ol>
+<li>Mail::raw()</li>
+</ol>
+<p>在控制器中写入方法:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">mail</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    Mail::raw(<span class="string">'邮件内容'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($message)</span> </span>&#123;</div><div class="line">        $message-&gt;from(<span class="string">'jat1014@163.com'</span>, <span class="string">'xj'</span>);</div><div class="line">        $message-&gt;subject(<span class="string">'邮件主题'</span>);</div><div class="line">        $message-&gt;to(<span class="string">'240151541@qq.com'</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>Mail::send()</li>
+</ol>
+<p>新建视图(目录:resources/views/student/mail.blade.php),并写入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;Hello &#123;&#123;  $name &#125;&#125;&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
+<p>在控制器写入方法:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Mail::send(<span class="string">'student.mail'</span>, [<span class="string">'name'</span> =&gt; <span class="string">'xj'</span>], <span class="function"><span class="keyword">function</span> <span class="params">($message)</span> </span>&#123;</div><div class="line">        $message-&gt;to(<span class="string">'240151541@qq.com'</span>);</div><div class="line">    &#125;);    <span class="comment">//第一个参数是视图模板的地址,第二个是参数,第三个是方法</span></div></pre></td></tr></table></figure></p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><ul>
+<li><p>Laravel为各种不同的缓存系统提供一致的API</p>
+</li>
+<li><p>Laravel支持各种常见的后端缓存系统,如File、Memcached和Redis</p>
+</li>
+</ul>
+<p><strong>配置文件</strong></p>
+<blockquote>
+<p>config/cache.php</p>
+</blockquote>
+<p><strong>主要方法: put()、add()、forever()、has()、get()、pull()</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">cache1</span><span class="params">()</span>    //添加缓存</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">// put()</span></div><div class="line">    Cache::put(<span class="string">'key1'</span>, <span class="string">'value1'</span>, <span class="number">10</span>); <span class="comment">//第一个参数为键值,第二个为值,第三个为缓存有效期(单位为分钟)</span></div><div class="line">    <span class="comment">// add() 缓存不存在时添加数据到缓存,成功添加返回true,失败返回false</span></div><div class="line">    $bool = Cache::add(<span class="string">'key2'</span>, <span class="string">'value2'</span>, <span class="number">10</span>);</div><div class="line">    dd($bool);</div><div class="line">    <span class="comment">// forever() 永久存储数据到缓存,必须通过forget()方法手动从缓存中移除</span></div><div class="line">    Cache::forever(<span class="string">'key3'</span>, <span class="string">'value3'</span>);</div><div class="line">    <span class="comment">// 检查缓存项是否存在: has()</span></div><div class="line">    <span class="keyword">if</span> (Cache::has(<span class="string">'key1'</span>)) &#123;</div><div class="line">        <span class="comment">//</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">cache2</span><span class="params">()</span>    //获取及删除缓存</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">// get()</span></div><div class="line">    $value = Cache::get(<span class="string">'key3'</span>, <span class="string">'default'</span>);</div><div class="line">    dd($value);</div><div class="line">    <span class="comment">// pull() 获取并删除缓存,不存在则返回null</span></div><div class="line">    $res = Cache::pull(<span class="string">'key1'</span>, <span class="string">'default'</span>);</div><div class="line">    dd($res);</div><div class="line">    <span class="comment">// forget()</span></div><div class="line">    $bool = Cache::forget(<span class="string">'key3'</span>);</div><div class="line">    dd($bool);</div><div class="line">    <span class="comment">// flush() 清除所有缓存</span></div><div class="line">    Cache::flush();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="错误与日志"><a href="#错误与日志" class="headerlink" title="错误与日志"></a>错误与日志</h2><p><strong>Debug模式</strong></p>
+<ul>
+<li>配置文件<blockquote>
+<p>config/app.php<br>//进行本地开发时,应配置APP_DEBUG环境变量为true,在线上环境,这个值应该永远为false</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">error</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">//访问时debug模式会直接报错,并显示原因</span></div><div class="line">    dd($name);  </div><div class="line">    <span class="keyword">return</span> view(<span class="string">'student.error'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>HTTP异常</strong></p>
+<p>有些异常描述来自服务器的HTTP错误码,例如:404(页面未找到)、401(认证失败错误)、500(程序出错)</p>
+<p>为了在应用中生成这样的响应，可以使用 abort 辅助函数：</p>
+<blockquote>
+<p>abort(404, ‘响应描述’);</p>
+</blockquote>
+<p>如果你想要自定义404错误页面，创建一个resources/views/errors/404.blade.php文件，该视图文件用于渲染程序返回的所有404错误。需要注意的是，该目录下的视图命名应该和相应的HTTP状态码相匹配。abort函数触发的HttpException异常会以$exception变量的方式传递给视图。</p>
+<p><strong>日志</strong></p>
+<ol>
+<li><p>Laravel日志工具基于强大的Monolog库,提供了single、daily、syslog和errorlog日志模式</p>
+</li>
+<li><p>debug、info、notice、warning、error、critical和alert七个错误级别</p>
+</li>
+</ol>
+<ul>
+<li><p>single模式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">log</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line"><span class="comment">//        Log::info('这是一个info级别的日志');</span></div><div class="line"><span class="comment">//        Log::warning('这是一个warning级别的日志');</span></div><div class="line">        Log::error(<span class="string">'记录数组'</span>, [<span class="string">'name'</span> =&gt; <span class="string">'xj'</span>]);</div><div class="line">    &#125;</div><div class="line"><span class="comment">//在 storage/logs/laravel.log 中将写入:</span></div><div class="line"><span class="comment">//[2018-08-13 07:44:39] local.INFO: 这是一个info级别的日志  </span></div><div class="line"><span class="comment">//[2018-08-13 07:46:10] local.WARNING: 这是一个warning级别的日志</span></div><div class="line"><span class="comment">//[2018-08-13 07:51:28] local.ERROR: 记录数组 &#123;"name":"xj"&#125;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>daily模式</p>
+</li>
+</ul>
+<p>根据每天日期生成日志文件</p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><ul>
+<li>Laravel的队列服务为各种不同的后台队列提供了统一的API</li>
+<li>允许推迟耗时任务(例如发送邮件)的执行,从而大幅提高web请求速度</li>
+</ul>
+<p><strong>配置文件</strong></p>
+<blockquote>
+<p>config/queue.php</p>
+</blockquote>
+<p><strong>主要步骤</strong></p>
+<ol>
+<li>迁移队列需要的数据表</li>
+</ol>
+<p>在.env文件中修改: QUEUE_DRIVER=database</p>
+<p>命令行输入: </p>
+<blockquote>
+<p>php artisan queue:table   //迁移数据表<br>php artisan migrate //执行迁移</p>
+</blockquote>
+<ol>
+<li>编写任务类</li>
+</ol>
+<p>命令行创建任务类:</p>
+<blockquote>
+<p>php artisan make:job SendEmail</p>
+</blockquote>
+<p>写入:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">protected</span> $email;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Create a new job instance.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * <span class="doctag">@return</span> void</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($email)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">//</span></div><div class="line">    <span class="keyword">$this</span>-&gt;email = $email;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Execute the job.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * <span class="doctag">@return</span> void</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">// 发送邮件</span></div><div class="line">    Mail::raw(<span class="string">'队列测试'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($message)</span> </span>&#123;</div><div class="line">        $message-&gt;to(<span class="keyword">$this</span>-&gt;email);</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">// 日志记录</span></div><div class="line">    <span class="comment">//Log::info('已发送邮件 - ' . $this-&gt;email);</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>推送任务到队列</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">queue</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;   </div><div class="line">    <span class="comment">//推送任务到队列(未执行,存在了对应的jobs数据表中)</span></div><div class="line">    dispatch(<span class="keyword">new</span> SendEmail(<span class="string">''</span><span class="number">240151541</span>@qq.com<span class="string">''</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>运行队列监听器</li>
+</ol>
+<p>命令行执行:</p>
+<blockquote>
+<p>php artisan queue:listen<br>//执行成功则显示:<br>//➜  list php artisan queue:listen<br>//[2018-08-13 08:31:57] Processing: App\Jobs\SendEmail<br>//[2018-08-13 08:31:58] Processed:  App\Jobs\SendEmail</p>
+</blockquote>
+<ol>
+<li>处理失败任务</li>
+</ol>
+<p>命令行执行:  迁移数据表</p>
+<blockquote>
+<p>php artisan queue:failed-table<br>php artisan migrate<br>//队列执行失败后会将任务记录到failed_jobs数据表中</p>
+</blockquote>
+<p>命令行查看失败记录:</p>
+<blockquote>
+<p>php artisan queue:failed  // 查看failed_jobs数据表的记录<br>// 若想重新将失败的任务放入队列则执行:<br>php artisan queue:retry 1   // 参数为任务在数据表中的id或所有(all)  </p>
+</blockquote>
+<p>命令行删除队列中的任务:</p>
+<blockquote>
+<p>php artisan queue:forget 1    // 参数为任务在数据表中的id<br>//删除所有任务则执行:<br>php artisan queue:flush</p>
+</blockquote>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">Xj</span>
+      <div class="donation-body">
+        <div class="tip text-center"></div>
+        <ul>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/08/11/Composer使用/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
