@@ -22,7 +22,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/08/05/视图-Blade模板/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="为何要使用模板继承？在开发网站的时候便于维护和应用，例如一个网站在头部的导航栏中有不同的分类，每个分类的内容不同但头部和尾部都是完全一样的，即继承了相同的模板，这样不用给每种页面做不同的设计，也便于后期维护。 @yield 和 @section 继承模板中重写模板中的某一块(‘header’模块)时，用12345@section(&apos;header&apos;)//要继承模板，同时再写入一些内容则添加：@par">
-<meta property="og:updated_time" content="2018-08-05T13:03:19.000Z">
+<meta property="og:updated_time" content="2018-08-17T09:56:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="视图--Blade模板">
 <meta name="twitter:description" content="为何要使用模板继承？在开发网站的时候便于维护和应用，例如一个网站在头部的导航栏中有不同的分类，每个分类的内容不同但头部和尾部都是完全一样的，即继承了相同的模板，这样不用给每种页面做不同的设计，也便于后期维护。 @yield 和 @section 继承模板中重写模板中的某一块(‘header’模块)时，用12345@section(&apos;header&apos;)//要继承模板，同时再写入一些内容则添加：@par">
@@ -150,7 +150,7 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
+    <strong class="toc-title">Posts List</strong>
     <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#为何要使用模板继承？"><span class="toc-text">为何要使用模板继承？</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#模板中输出php变量、调用php代码"><span class="toc-text">模板中输出php变量、调用php代码</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#模板中原样输出-加-、注释"><span class="toc-text">模板中原样输出(加@)、注释</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#引入子视图-include"><span class="toc-text">引入子视图  include</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#模板中的流量控制-if、unless、for、foreach"><span class="toc-text">模板中的流量控制:if、unless、for、foreach</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#模板中的URL"><span class="toc-text">模板中的URL</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在控制器方法中返回视图并指定变量"><span class="toc-text">在控制器方法中返回视图并指定变量</span></a>
   </div>
 
@@ -177,7 +177,7 @@
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/学习/">学习</a>
+    <a class="article-category-link" href="/categories/Laravel/">Laravel</a>
   </span>
 
 
@@ -268,7 +268,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
