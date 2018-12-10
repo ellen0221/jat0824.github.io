@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP验证码 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Laravel应用," />
+  
+
+  <meta name="description" content="验证码介绍 是一种区分用户是计算机和人的公共全自动程序  学习目的: 屏蔽机器请求,保障业务不受机器请求的干扰  为什么要屏蔽机器请求: 一般服务端业务,写请求产生的消耗要远远大于读请求。对于能产生大量写请求的隐患情况,我们都应当予以干预。例如:论坛自动发帖灌水功能。   应用场景: 1.登录、注册确定提交前,做人/机器校验;   2.发布、回复信息前,做人/机器校验;   3.疑似机器请求时,做">
+<meta name="keywords" content="Laravel应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP验证码">
+<meta property="og:url" content="http://yoursite.com/2018/08/24/PHP验证码/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="验证码介绍 是一种区分用户是计算机和人的公共全自动程序  学习目的: 屏蔽机器请求,保障业务不受机器请求的干扰  为什么要屏蔽机器请求: 一般服务端业务,写请求产生的消耗要远远大于读请求。对于能产生大量写请求的隐患情况,我们都应当予以干预。例如:论坛自动发帖灌水功能。   应用场景: 1.登录、注册确定提交前,做人/机器校验;   2.发布、回复信息前,做人/机器校验;   3.疑似机器请求时,做">
+<meta property="og:updated_time" content="2018-08-24T07:56:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP验证码">
+<meta name="twitter:description" content="验证码介绍 是一种区分用户是计算机和人的公共全自动程序  学习目的: 屏蔽机器请求,保障业务不受机器请求的干扰  为什么要屏蔽机器请求: 一般服务端业务,写请求产生的消耗要远远大于读请求。对于能产生大量写请求的隐患情况,我们都应当予以干预。例如:论坛自动发帖灌水功能。   应用场景: 1.登录、注册确定提交前,做人/机器校验;   2.发布、回复信息前,做人/机器校验;   3.疑似机器请求时,做">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">-&gt;</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">-&gt;</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#验证码介绍"><span class="toc-text">验证码介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证码服务的核心技术分析"><span class="toc-text">验证码服务的核心技术分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-text">环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实现验证码底图"><span class="toc-text">实现验证码底图</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-PHP验证码" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">PHP验证码</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.08.24</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Xj</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Laravel/">Laravel</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="验证码介绍"><a href="#验证码介绍" class="headerlink" title="验证码介绍"></a>验证码介绍</h2><ul>
+<li><p>是一种区分用户是计算机和人的公共全自动程序</p>
+</li>
+<li><p>学习目的: 屏蔽机器请求,保障业务不受机器请求的干扰</p>
+</li>
+<li>为什么要屏蔽机器请求: 一般服务端业务,写请求产生的消耗要远远大于读请求。对于能产生大量写请求的隐患情况,我们都应当予以干预。例如:论坛自动发帖灌水功能。  </li>
+<li>应用场景: 1.登录、注册确定提交前,做人/机器校验;   2.发布、回复信息前,做人/机器校验;   3.疑似机器请求时,做人/机器校验;</li>
+</ul>
+<h2 id="验证码服务的核心技术分析"><a href="#验证码服务的核心技术分析" class="headerlink" title="验证码服务的核心技术分析"></a>验证码服务的核心技术分析</h2><p>实现步骤:  </p>
+<ol>
+<li>生成底图:  产生一块图片-&gt;在图片中生成干扰元素-&gt;将验证内容画到底图上</li>
+<li>生成验证内容:  生成无规律内容-&gt;画到底图上、服务端保存该段内容</li>
+<li>生成验证码图片:  有验证内容的底图</li>
+<li>校验验证内容:  将用户输入的与服务端保存的验证内容进行对比校验  </li>
+</ol>
+<p>技术点、技术依赖:</p>
+<ol>
+<li>底图的实现,并添加干扰元素:  依赖PHP图片处理库GD,详情: <a href="http://php.net/gd" target="_blank" rel="external">http://php.net/gd</a></li>
+<li>生成验证内容:<br>a) 简单的随机数生成,使用PHP函数mt_rand();<br>b) 随机数字 + 字母生成,需要ASCII码理论基础;<br>c) 随机中文内容生成,需要UTF-8编码理论基础;  </li>
+<li>验证内容保存在服务端:  需要PHP操作session基础</li>
+<li>验证内容的校验:  需要前端Ajax基础  </li>
+</ol>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>准备工作:</p>
+<ol>
+<li>PHP运行环境  (已搭建好)</li>
+<li>检查PHP是否支持GD: 通过&lt;?php  phpinfo() 查看输出即可。(GD Support: enabled)</li>
+</ol>
+<h4 id="实现验证码底图"><a href="#实现验证码底图" class="headerlink" title="实现验证码底图"></a>实现验证码底图</h4><ul>
+<li>目标:通过PHP代码,生成一张100x30 px大小的图片</li>
+<li>方法:<blockquote>
+<p>resource imagecreatetruecolor(int $width, int $height)</p>
+</blockquote>
+</li>
+<li>注意事项:<br>a) 依赖GD扩展;<br>b) 输出图片前,必须提前输出图片header信息;<br>c) 该方法默认输出为黑色背景;  </li>
+</ul>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">Xj</span>
+      <div class="donation-body">
+        <div class="tip text-center"></div>
+        <ul>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/08/16/消息队列的实现及应用/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/09/15/SSL配置实验报告/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
