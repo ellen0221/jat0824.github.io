@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Laravel-基于多表的用户认证（前后台用户） | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Laravel," />
+  
+
+  <meta name="description" content="生成系统内置的脚手架 php artisan make:auth # 注册认证路由、发布认证视图php artisan migrate # 创建认证相关数据表，如果之前已经运行过，可以跳过  实现前台用户登录框架自带的users表存储前台用户make:auth命令在route/web.php中注册以下路由:12Auth::routes();Route::get(&apos;/home&apos;, &apos;HomeCont">
+<meta name="keywords" content="Laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel-基于多表的用户认证（前后台用户）">
+<meta property="og:url" content="http://yoursite.com/2019/01/11/Laravel-基于多表的用户认证（前后台用户）/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="生成系统内置的脚手架 php artisan make:auth # 注册认证路由、发布认证视图php artisan migrate # 创建认证相关数据表，如果之前已经运行过，可以跳过  实现前台用户登录框架自带的users表存储前台用户make:auth命令在route/web.php中注册以下路由:12Auth::routes();Route::get(&apos;/home&apos;, &apos;HomeCont">
+<meta property="og:updated_time" content="2019-01-26T09:13:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel-基于多表的用户认证（前后台用户）">
+<meta name="twitter:description" content="生成系统内置的脚手架 php artisan make:auth # 注册认证路由、发布认证视图php artisan migrate # 创建认证相关数据表，如果之前已经运行过，可以跳过  实现前台用户登录框架自带的users表存储前台用户make:auth命令在route/web.php中注册以下路由:12Auth::routes();Route::get(&apos;/home&apos;, &apos;HomeCont">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">-&gt;</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">-&gt;</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts List</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成系统内置的脚手架"><span class="toc-text">生成系统内置的脚手架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现前台用户登录"><span class="toc-text">实现前台用户登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建后台用户模型"><span class="toc-text">创建后台用户模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑认证配置文件"><span class="toc-text">编辑认证配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用配置的自定义认证"><span class="toc-text">使用配置的自定义认证</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Laravel-基于多表的用户认证（前后台用户）" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Laravel-基于多表的用户认证（前后台用户）</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.01.11</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Xj</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="生成系统内置的脚手架"><a href="#生成系统内置的脚手架" class="headerlink" title="生成系统内置的脚手架"></a>生成系统内置的脚手架</h3><blockquote>
+<p>php artisan make:auth # 注册认证路由、发布认证视图<br>php artisan migrate # 创建认证相关数据表，如果之前已经运行过，可以跳过</p>
+</blockquote>
+<h3 id="实现前台用户登录"><a href="#实现前台用户登录" class="headerlink" title="实现前台用户登录"></a>实现前台用户登录</h3><p>框架自带的users表存储前台用户<br><code>make:auth</code>命令在<code>route/web.php</code>中注册以下路由:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Auth::routes();</div><div class="line">Route::get(<span class="string">'/home'</span>, <span class="string">'HomeController@index'</span>)-&gt;name(<span class="string">'home'</span>);</div></pre></td></tr></table></figure></p>
+<p><code>home</code>路由是用户认证成功后默认跳转路由，<code>Auth::routes()</code>则包含以下路由定义:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Authentication Routes...</span></div><div class="line"><span class="keyword">$this</span>-&gt;get(<span class="string">'login'</span>, <span class="string">'Auth\LoginController@showLoginForm'</span>)-&gt;name(<span class="string">'login'</span>);</div><div class="line"><span class="keyword">$this</span>-&gt;post(<span class="string">'login'</span>, <span class="string">'Auth\LoginController@login'</span>);</div><div class="line"><span class="keyword">$this</span>-&gt;post(<span class="string">'logout'</span>, <span class="string">'Auth\LoginController@logout'</span>)-&gt;name(<span class="string">'logout'</span>);</div><div class="line"><span class="keyword">$this</span>-&gt;get(<span class="string">'register'</span>, <span class="string">'Auth\RegisterController@showRegistrationForm'</span>)-&gt;name(<span class="string">'register'</span>);</div><div class="line"><span class="keyword">$this</span>-&gt;post(<span class="string">'register'</span>, <span class="string">'Auth\RegisterController@register'</span>);</div><div class="line"><span class="comment">// Password Reset Routes...</span></div><div class="line"><span class="keyword">$this</span>-&gt;get(<span class="string">'password/reset'</span>, <span class="string">'Auth\ForgotPasswordController@showLinkRequestForm'</span>)-&gt;name(<span class="string">'password.request'</span>);</div><div class="line"><span class="keyword">$this</span>-&gt;post(<span class="string">'password/email'</span>, <span class="string">'Auth\ForgotPasswordController@sendResetLinkEmail'</span>)-&gt;name(<span class="string">'password.email'</span>);</div><div class="line"><span class="keyword">$this</span>-&gt;get(<span class="string">'password/reset/&#123;token&#125;'</span>, <span class="string">'Auth\ResetPasswordController@showResetForm'</span>)-&gt;name(<span class="string">'password.reset'</span>);</div><div class="line"><span class="keyword">$this</span>-&gt;post(<span class="string">'password/reset'</span>, <span class="string">'Auth\ResetPasswordController@reset'</span>)-&gt;name(<span class="string">'password.update'</span>);</div></pre></td></tr></table></figure></p>
+<p>运行以下命令后可在本地进入登录页面<a href="localhost:8000/home" target="_blank" rel="external">localhost:8000/home</a></p>
+<blockquote>
+<p>php artisan serve</p>
+</blockquote>
+<p>有登录和注册功能，需要先注册再登录</p>
+<h3 id="创建后台用户模型"><a href="#创建后台用户模型" class="headerlink" title="创建后台用户模型"></a>创建后台用户模型</h3><p>使用artisan命令生成后台用户模型及对应数据库迁移文件（假设后台用户表为admin,对应的模型为User）:</p>
+<blockquote>
+<p>php artisan make:model Users -m </p>
+</blockquote>
+<p>编辑新生成的数据库迁移文件<code>create_user_table</code>:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">up</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        Schema::create(<span class="string">'admin'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(Blueprint $table)</span> </span>&#123;</div><div class="line">            $table-&gt;increments(<span class="string">'id'</span>);</div><div class="line">            $table-&gt;string(<span class="string">'staff_id'</span>)-&gt;unique()-&gt;notnull();</div><div class="line">            $table-&gt;string(<span class="string">'password'</span>);</div><div class="line">            $table-&gt;rememberToken();</div><div class="line">            $table-&gt;timestamps();</div><div class="line">        &#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>运行迁移命令在数据库中创建该表:</p>
+<blockquote>
+<p>php artisan migrate</p>
+</blockquote>
+<p>编辑<code>User</code>模型<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Authenticatable</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">use</span> <span class="title">Notifiable</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 管理员类</span></div><div class="line">    <span class="keyword">protected</span> $table = <span class="string">"admin"</span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * The attributes that are mass assignable.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@var</span> array</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">protected</span> $fillable = [</div><div class="line">        <span class="string">'staff_id'</span>, <span class="string">'password'</span>,<span class="string">'created_at'</span></div><div class="line">    ];</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * The attributes that should be hidden for arrays.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@var</span> array</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">protected</span> $hidden = [</div><div class="line">        <span class="string">'password'</span>, <span class="string">'remember_token'</span>,</div><div class="line">    ];</div><div class="line"></div><div class="line">    <span class="comment">// 与职工类一对一关联</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">staff</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;belongsTo(<span class="string">'App\Staff'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="编辑认证配置文件"><a href="#编辑认证配置文件" class="headerlink" title="编辑认证配置文件"></a>编辑认证配置文件</h3><p>编辑<code>config/auth.php</code>认证配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 默认用户认证配置，即不指定特定认证服务方的话，使用以下默认配置</span></div><div class="line">    <span class="string">'defaults'</span> =&gt; [</div><div class="line">        <span class="string">'guard'</span> =&gt; <span class="string">'web'</span>,</div><div class="line">        <span class="string">'passwords'</span> =&gt; <span class="string">'admin'</span>,</div><div class="line">    ],</div><div class="line">    </div><div class="line"><span class="comment">// 在这里配置不同的认证服务方，默认支持 web 和 api 认证，</span></div><div class="line"><span class="comment">// 即 web 路由的请求认证和 api 路由的请求认证</span></div><div class="line"><span class="comment">// 如果要配置其它的认证服务方，比如后台登录，需要在这里配置</span></div><div class="line">    <span class="string">'guards'</span> =&gt; [</div><div class="line">        <span class="string">'web'</span> =&gt; [</div><div class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'session'</span>,</div><div class="line">            <span class="string">'provider'</span> =&gt; <span class="string">'admin'</span>,  <span class="comment">//修改为admin</span></div><div class="line">        ],</div><div class="line"></div><div class="line">        <span class="string">'api'</span> =&gt; [</div><div class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'token'</span>,</div><div class="line">            <span class="string">'provider'</span> =&gt; <span class="string">'admin'</span>,</div><div class="line">        ],</div><div class="line"></div><div class="line">    <span class="comment">// 在这里添加了一个自定义认证服务方:staff</span></div><div class="line">        <span class="string">'staff'</span> =&gt; [</div><div class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'session'</span>,</div><div class="line">            <span class="string">'provider'</span> =&gt; <span class="string">'staff'</span>,</div><div class="line">        ],</div><div class="line">    ],</div><div class="line">    </div><div class="line"><span class="comment">// 在这里配置系统支持的认证提供者（用户数据来源），</span></div><div class="line"><span class="comment">// 默认是基于 User 模型的 EloquentProvider，</span></div><div class="line"><span class="comment">// 如果系统支持不同表用户登录，需要在这里额外配置</span></div><div class="line">    <span class="string">'providers'</span> =&gt; [</div><div class="line">        <span class="comment">// 配置了admin</span></div><div class="line">        <span class="string">'admin'</span> =&gt; [</div><div class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'eloquent'</span>,</div><div class="line">            <span class="string">'model'</span> =&gt; App\User::class,</div><div class="line">        ],</div><div class="line"></div><div class="line">        <span class="comment">// 在这里配置了staff</span></div><div class="line">        <span class="string">'staff'</span> =&gt; [</div><div class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'eloquent'</span>,</div><div class="line">            <span class="string">'model'</span> =&gt; App\Users::class,</div><div class="line">        ]</div><div class="line"></div><div class="line">        <span class="comment">// 'users' =&gt; [</span></div><div class="line">        <span class="comment">//     'driver' =&gt; 'database',</span></div><div class="line">        <span class="comment">//     'table' =&gt; 'users',</span></div><div class="line">        <span class="comment">// ],</span></div><div class="line">    ],</div><div class="line">    </div><div class="line"><span class="comment">// 密码重置表，默认支持 users 表的密码重置，对应数据表是 password_resets</span></div><div class="line"><span class="comment">// 如果要支持其它用户表的密码重置，需要在这里额外配置</span></div><div class="line">    <span class="string">'passwords'</span> =&gt; [</div><div class="line">        <span class="string">'users'</span> =&gt; [</div><div class="line">            <span class="string">'provider'</span> =&gt; <span class="string">'users'</span>,</div><div class="line">            <span class="string">'table'</span> =&gt; <span class="string">'password_resets'</span>,</div><div class="line">            <span class="string">'expire'</span> =&gt; <span class="number">60</span>,</div><div class="line">        ],</div><div class="line">    ],</div></pre></td></tr></table></figure></p>
+<h3 id="使用配置的自定义认证"><a href="#使用配置的自定义认证" class="headerlink" title="使用配置的自定义认证"></a>使用配置的自定义认证</h3><ul>
+<li>后台认证路由  </li>
+</ul>
+<p>首先在<code>routes/web.php</code>中新增路由:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">$this</span>-&gt;get(<span class="string">'stafflogin'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> view(<span class="string">'auth.login'</span>);</div><div class="line">&#125;);</div><div class="line"><span class="keyword">$this</span>-&gt;post(<span class="string">'stafflogin'</span>, <span class="string">'UserController@staffauthenticate'</span>);</div><div class="line"><span class="keyword">$this</span>-&gt;post(<span class="string">'stafflogout'</span>, <span class="string">'UserController@logout'</span>);</div></pre></td></tr></table></figure></p>
+<ul>
+<li>后台认证控制器  </li>
+</ul>
+<p>使用<code>Artisan</code>命令创建控制器:</p>
+<blockquote>
+<p>php artisan make:controller UserController</p>
+</blockquote>
+<p>编辑<code>UserController.php</code>:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 职工登录验证</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">staffauthenticate</span><span class="params">(Request $request)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    $login = $request-&gt;input(<span class="string">'staff'</span>);</div><div class="line">    <span class="comment">// 调用自定义认证服务staff来验证登录</span></div><div class="line">    <span class="keyword">if</span> (Auth::guard(<span class="string">'staff'</span>)-&gt;attempt([<span class="string">'staff_id'</span> =&gt; $login[<span class="string">'id'</span>], <span class="string">'password'</span> =&gt; $login[<span class="string">'password'</span>]]))</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> redirect(<span class="string">'/api/staff/index'</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> redirect(<span class="string">'stafflogin'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 职工界面</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">// 在检查是否登录时也要调用自定义认证服务staff</span></div><div class="line">    $check = Auth::guard(<span class="string">'staff'</span>)-&gt;check();</div><div class="line">    <span class="keyword">if</span> ($check)</div><div class="line">    &#123;</div><div class="line">        $staff_id = Auth::guard(<span class="string">'staff'</span>)-&gt;user()-&gt;staff_id;</div><div class="line">        $info = Staff::find($staff_id);</div><div class="line">        <span class="keyword">return</span> view(<span class="string">'staff.index'</span>, [</div><div class="line">            <span class="string">'information'</span> =&gt; $info,</div><div class="line">        ]);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> redirect(<span class="string">'/'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>后台视图可自定义修改</li>
+</ul>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">Xj</span>
+      <div class="donation-body">
+        <div class="tip text-center"></div>
+        <ul>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/01/03/Laravel-项目开发命令集/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/01/26/git命令/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

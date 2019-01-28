@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
 
-  <html class="light page-archives2018">
+  <html class="light page-post">
 
 
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2018 | Hexo</title>
+  <title>git命令 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,12 +15,16 @@
     <meta name="keywords" content="后台,PHP,Java" />
   
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="常用 初始化仓库(进入项目根目录)  git init   将所有文件提交到索引仓库  git add .   将索引仓库中的文件添加到git仓库  git commit -m “message”   将master分支推送到远程仓库  git push origin master   将本地仓库追踪到远程仓库  首先在自己的github上新建一个项目得到项目地址(例如:https://githu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git命令">
+<meta property="og:url" content="http://yoursite.com/2019/01/26/git命令/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="常用 初始化仓库(进入项目根目录)  git init   将所有文件提交到索引仓库  git add .   将索引仓库中的文件添加到git仓库  git commit -m “message”   将master分支推送到远程仓库  git push origin master   将本地仓库追踪到远程仓库  首先在自己的github上新建一个项目得到项目地址(例如:https://githu">
+<meta property="og:updated_time" content="2019-01-26T09:52:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="git命令">
+<meta name="twitter:description" content="常用 初始化仓库(进入项目根目录)  git init   将所有文件提交到索引仓库  git add .   将索引仓库中的文件添加到git仓库  git commit -m “message”   将master分支推送到远程仓库  git push origin master   将本地仓库追踪到远程仓库  首先在自己的github上新建一个项目得到项目地址(例如:https://githu">
 
   
 
@@ -83,17 +87,8 @@
     <span id="toolbox-mobile" class="toolbox-mobile">-&gt;</span>
   
 
-  <div class="content content-archive">
-  <div class="page-header">
-
-  
-    <div class="breadcrumb">
-      <div class="location">Blog</div>
-      <i class="icon-location"></i>
-    </div>
-  
-
-  
+  <div class="post-header CENTER">
+   
   <div class="toolbox">
     <a class="toolbox-entry" href="/">
       <span class="toolbox-entry-text">-&gt;</span>
@@ -150,123 +145,141 @@
   </div>
 
 
+</div>
 
-  <div class="box-blog-info">
-    <a class="avatar" href="/">
-      <img src="/images/avatar.jpg" alt="" />
-    </a>
-    <div class="info">
-      <h3 class="name" style="font-family: calligraffittiregular">
-        Xj
-      </h3>
-      <div class="slogan">
-        Live and learn.
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts List</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用"><span class="toc-text">常用</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-git命令" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">git命令</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.01.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Xj</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h4 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h4><ul>
+<li><p>初始化仓库(进入项目根目录)</p>
+<blockquote>
+<p>git init</p>
+</blockquote>
+</li>
+<li><p>将所有文件提交到索引仓库</p>
+<blockquote>
+<p>git add .</p>
+</blockquote>
+</li>
+<li><p>将索引仓库中的文件添加到git仓库</p>
+<blockquote>
+<p>git commit -m “message”</p>
+</blockquote>
+</li>
+<li><p>将master分支推送到远程仓库</p>
+<blockquote>
+<p>git push origin master</p>
+</blockquote>
+</li>
+<li><p>将本地仓库追踪到远程仓库</p>
+<ol>
+<li>首先在自己的github上新建一个项目得到项目地址(例如:<a href="https://github.com/jat0824/process_schedule.git" target="_blank" rel="external">https://github.com/jat0824/process_schedule.git</a>)</li>
+<li>初始化本地仓库后，将本地master分支追踪到远程分支，运行以下命令:<blockquote>
+<p>git remote add origin <a href="https://github.com/jat0824/process_schedule.git" target="_blank" rel="external">https://github.com/jat0824/process_schedule.git</a></p>
+</blockquote>
+</li>
+<li>将本地文件提交到仓库并推送到远程仓库<blockquote>
+<p>git add .<br>   git commit -m “message”<br>   git push origin master</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">Xj</span>
+      <div class="donation-body">
+        <div class="tip text-center"></div>
+        <ul>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+        </ul>
       </div>
     </div>
   </div>
 
-</div>
 
-
-  <div class="post-list-box archive-body">
-    <ul class="list-post">  <li class="item-year item item-title item-title-3">
-    <a href="/archives/2018" class="text-year">
-      2018
-      <i class="icon-gou"></i>
-      
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/01/11/Laravel-基于多表的用户认证（前后台用户）/">
+        <i class="icon icon-angle-left"></i>
     </a>
-  </li>
-<li class="item-post item">
-  <span class="post-date">12-10</span>
-
-  
-  <a class="post-title" href="/2018/12/10/SSL协议配置报告/">SSL配置实验报告</a>
-
-
-</li>
-<li class="item-post item">
-  <span class="post-date">08-24</span>
-
-  
-  <a class="post-title" href="/2018/08/24/PHP验证码/">PHP验证码</a>
-
-
-</li>
-<li class="item-post item">
-  <span class="post-date">08-16</span>
-
-  
-  <a class="post-title" href="/2018/08/16/消息队列的实现及应用/">消息队列的实现及应用</a>
-
-
-</li>
-<li class="item-post item">
-  <span class="post-date">08-12</span>
-
-  
-  <a class="post-title" href="/2018/08/12/Laravel框架常用功能/">Laravel框架常用功能</a>
-
-
-</li>
-<li class="item-post item">
-  <span class="post-date">08-11</span>
-
-  
-  <a class="post-title" href="/2018/08/11/Composer使用/">Composer使用</a>
-
-
-</li>
-<li class="item-post item">
-  <span class="post-date">08-08</span>
-
-  
-  <a class="post-title" href="/2018/08/08/Laravel表单/">Laravel表单</a>
-
-
-</li>
-<li class="item-post item">
-  <span class="post-date">08-06</span>
-
-  
-  <a class="post-title" href="/2018/08/06/控制器-Controller/">控制器--Controller</a>
-
-
-</li>
-<li class="item-post item">
-  <span class="post-date">08-05</span>
-
-  
-  <a class="post-title" href="/2018/08/05/视图-Blade模板/">视图--Blade模板</a>
-
-
-</li>
-<li class="item-post item">
-  <span class="post-date">08-05</span>
-
-  
-  <a class="post-title" href="/2018/08/05/数据库操作——Eloquent-ORM/">数据库操作——Eloquent ORM</a>
-
-
-</li>
-<li class="item-post item">
-  <span class="post-date">08-05</span>
-
-  
-  <a class="post-title" href="/2018/08/05/数据库操作——查询构造器/">数据库操作——查询构造器</a>
-
-
-</li>
-</ul>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
   </div>
 
-  <div class="archive-footer">
-    
 
-  </div>
+
+
 </div>
 
 
-
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
 
 
 
@@ -332,6 +345,23 @@
 </div>
 
 
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
 
   
 
