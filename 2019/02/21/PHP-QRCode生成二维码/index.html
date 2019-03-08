@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>PHP验证码 | Hexo</title>
+  <title>PHP-QRCode生成二维码 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,17 +15,17 @@
     <meta name="keywords" content="PHP应用," />
   
 
-  <meta name="description" content="验证码介绍 是一种区分用户是计算机和人的公共全自动程序  学习目的: 屏蔽机器请求,保障业务不受机器请求的干扰  为什么要屏蔽机器请求: 一般服务端业务,写请求产生的消耗要远远大于读请求。对于能产生大量写请求的隐患情况,我们都应当予以干预。例如:论坛自动发帖灌水功能。   应用场景: 1.登录、注册确定提交前,做人/机器校验;   2.发布、回复信息前,做人/机器校验;   3.疑似机器请求时,做">
+  <meta name="description" content="认识二维码二维码的优缺点 优点：  信息容量大（点的出现表示二进制中的1，不出现表示0） 编码范围广 容错能力强 译码可靠性高 可引入加密措施 成本低，易制作   缺点：  二维码技术成为手机病毒、钓鱼网站传播的新渠道 信息泄密    QR Code 二维码（一种矩阵式二维码）目前流行的三大国际标准：    PDF417: 不支持中文   DM: 专利未公开，需要支付专利费用   QR Code:">
 <meta name="keywords" content="PHP应用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP验证码">
-<meta property="og:url" content="http://yoursite.com/2018/08/24/PHP验证码/index.html">
+<meta property="og:title" content="PHP-QRCode生成二维码">
+<meta property="og:url" content="http://yoursite.com/2019/02/21/PHP-QRCode生成二维码/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="验证码介绍 是一种区分用户是计算机和人的公共全自动程序  学习目的: 屏蔽机器请求,保障业务不受机器请求的干扰  为什么要屏蔽机器请求: 一般服务端业务,写请求产生的消耗要远远大于读请求。对于能产生大量写请求的隐患情况,我们都应当予以干预。例如:论坛自动发帖灌水功能。   应用场景: 1.登录、注册确定提交前,做人/机器校验;   2.发布、回复信息前,做人/机器校验;   3.疑似机器请求时,做">
-<meta property="og:updated_time" content="2019-02-21T06:43:49.000Z">
+<meta property="og:description" content="认识二维码二维码的优缺点 优点：  信息容量大（点的出现表示二进制中的1，不出现表示0） 编码范围广 容错能力强 译码可靠性高 可引入加密措施 成本低，易制作   缺点：  二维码技术成为手机病毒、钓鱼网站传播的新渠道 信息泄密    QR Code 二维码（一种矩阵式二维码）目前流行的三大国际标准：    PDF417: 不支持中文   DM: 专利未公开，需要支付专利费用   QR Code:">
+<meta property="og:updated_time" content="2019-02-21T07:04:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP验证码">
-<meta name="twitter:description" content="验证码介绍 是一种区分用户是计算机和人的公共全自动程序  学习目的: 屏蔽机器请求,保障业务不受机器请求的干扰  为什么要屏蔽机器请求: 一般服务端业务,写请求产生的消耗要远远大于读请求。对于能产生大量写请求的隐患情况,我们都应当予以干预。例如:论坛自动发帖灌水功能。   应用场景: 1.登录、注册确定提交前,做人/机器校验;   2.发布、回复信息前,做人/机器校验;   3.疑似机器请求时,做">
+<meta name="twitter:title" content="PHP-QRCode生成二维码">
+<meta name="twitter:description" content="认识二维码二维码的优缺点 优点：  信息容量大（点的出现表示二进制中的1，不出现表示0） 编码范围广 容错能力强 译码可靠性高 可引入加密措施 成本低，易制作   缺点：  二维码技术成为手机病毒、钓鱼网站传播的新渠道 信息泄密    QR Code 二维码（一种矩阵式二维码）目前流行的三大国际标准：    PDF417: 不支持中文   DM: 专利未公开，需要支付专利费用   QR Code:">
 
   
 
@@ -151,20 +151,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#验证码介绍"><span class="toc-text">验证码介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证码服务的核心技术分析"><span class="toc-text">验证码服务的核心技术分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-text">环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实现验证码底图"><span class="toc-text">实现验证码底图</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#认识二维码"><span class="toc-text">认识二维码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#二维码的优缺点"><span class="toc-text">二维码的优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#QR-Code-二维码（一种矩阵式二维码）"><span class="toc-text">QR Code 二维码（一种矩阵式二维码）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成二维码实例"><span class="toc-text">生成二维码实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备工作"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PHP生成QR-Code"><span class="toc-text">PHP生成QR Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jQuery生成QR-Code"><span class="toc-text">jQuery生成QR Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PHP生成电子名片"><span class="toc-text">PHP生成电子名片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PHP识别二维码"><span class="toc-text">PHP识别二维码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他形态的二维码"><span class="toc-text">其他形态的二维码</span></a></li></ol></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-PHP验证码" class="article article-type-post" itemprop="blogPost">
+   <article id="post-PHP-QRCode生成二维码" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">PHP验证码</h1>
+    <h1 class="post-title">PHP-QRCode生成二维码</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2018.08.24</span>
+        <span>2019.02.21</span>
       </span>
 
       
@@ -175,11 +175,6 @@
       
 
       
-  <span class="article-category">
-    <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/Laravel/">Laravel</a>
-  </span>
-
 
 
       
@@ -197,42 +192,41 @@
 
   <div class="article-content">
     
-      <h2 id="验证码介绍"><a href="#验证码介绍" class="headerlink" title="验证码介绍"></a>验证码介绍</h2><ul>
-<li><p>是一种区分用户是计算机和人的公共全自动程序</p>
+      <h3 id="认识二维码"><a href="#认识二维码" class="headerlink" title="认识二维码"></a>认识二维码</h3><h5 id="二维码的优缺点"><a href="#二维码的优缺点" class="headerlink" title="二维码的优缺点"></a>二维码的优缺点</h5><ul>
+<li><p>优点：</p>
+<ol>
+<li>信息容量大（点的出现表示二进制中的1，不出现表示0）</li>
+<li>编码范围广</li>
+<li>容错能力强</li>
+<li>译码可靠性高</li>
+<li>可引入加密措施</li>
+<li>成本低，易制作</li>
+</ol>
 </li>
-<li><p>学习目的: 屏蔽机器请求,保障业务不受机器请求的干扰</p>
+<li><p>缺点：</p>
+<ol>
+<li>二维码技术成为手机病毒、钓鱼网站传播的新渠道</li>
+<li>信息泄密</li>
+</ol>
 </li>
-<li>为什么要屏蔽机器请求: 一般服务端业务,写请求产生的消耗要远远大于读请求。对于能产生大量写请求的隐患情况,我们都应当予以干预。例如:论坛自动发帖灌水功能。  </li>
-<li>应用场景: 1.登录、注册确定提交前,做人/机器校验;   2.发布、回复信息前,做人/机器校验;   3.疑似机器请求时,做人/机器校验;</li>
 </ul>
-<h2 id="验证码服务的核心技术分析"><a href="#验证码服务的核心技术分析" class="headerlink" title="验证码服务的核心技术分析"></a>验证码服务的核心技术分析</h2><p>实现步骤:  </p>
+<h5 id="QR-Code-二维码（一种矩阵式二维码）"><a href="#QR-Code-二维码（一种矩阵式二维码）" class="headerlink" title="QR Code 二维码（一种矩阵式二维码）"></a>QR Code 二维码（一种矩阵式二维码）</h5><p>目前流行的三大国际标准：  </p>
 <ol>
-<li>生成底图:  产生一块图片-&gt;在图片中生成干扰元素-&gt;将验证内容画到底图上</li>
-<li>生成验证内容:  生成无规律内容-&gt;画到底图上、服务端保存该段内容</li>
-<li>生成验证码图片:  有验证内容的底图</li>
-<li>校验验证内容:  将用户输入的与服务端保存的验证内容进行对比校验  </li>
+<li>PDF417: 不支持中文  </li>
+<li>DM: 专利未公开，需要支付专利费用  </li>
+<li>QR Code: 专利公开，支持中文  </li>
 </ol>
-<p>技术点、技术依赖:</p>
+<p><strong>QR Code与其他二维码相比，具有识别速度快、数据密度大、占用空间小的优势</strong></p>
+<h3 id="生成二维码实例"><a href="#生成二维码实例" class="headerlink" title="生成二维码实例"></a>生成二维码实例</h3><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><ol>
+<li>MAMP(Mac)</li>
+<li>WAMP(Windows)</li>
+<li>GD库</li>
+</ol>
+<h4 id="PHP生成QR-Code"><a href="#PHP生成QR-Code" class="headerlink" title="PHP生成QR Code"></a>PHP生成QR Code</h4><p>PHP QR Code 官网: <a href="http://phpqrcode.sourceforge.net/" target="_blank" rel="external">http://phpqrcode.sourceforge.net/</a></p>
 <ol>
-<li>底图的实现,并添加干扰元素:  依赖PHP图片处理库GD,详情: <a href="http://php.net/gd" target="_blank" rel="external">http://php.net/gd</a></li>
-<li>生成验证内容:<br>a) 简单的随机数生成,使用PHP函数mt_rand();<br>b) 随机数字 + 字母生成,需要ASCII码理论基础;<br>c) 随机中文内容生成,需要UTF-8编码理论基础;  </li>
-<li>验证内容保存在服务端:  需要PHP操作session基础</li>
-<li>验证内容的校验:  需要前端Ajax基础  </li>
+<li>下载源码</li>
 </ol>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>准备工作:</p>
-<ol>
-<li>PHP运行环境  (已搭建好)</li>
-<li>检查PHP是否支持GD: 通过&lt;?php  phpinfo() 查看输出即可。(GD Support: enabled)</li>
-</ol>
-<h4 id="实现验证码底图"><a href="#实现验证码底图" class="headerlink" title="实现验证码底图"></a>实现验证码底图</h4><ul>
-<li>目标:通过PHP代码,生成一张100x30 px大小的图片</li>
-<li>方法:<blockquote>
-<p>resource imagecreatetruecolor(int $width, int $height)</p>
-</blockquote>
-</li>
-<li>注意事项:<br>a) 依赖GD扩展;<br>b) 输出图片前,必须提前输出图片header信息;<br>c) 该方法默认输出为黑色背景;  </li>
-</ul>
-
+<h4 id="jQuery生成QR-Code"><a href="#jQuery生成QR-Code" class="headerlink" title="jQuery生成QR Code"></a>jQuery生成QR Code</h4><h4 id="PHP生成电子名片"><a href="#PHP生成电子名片" class="headerlink" title="PHP生成电子名片"></a>PHP生成电子名片</h4><h4 id="PHP识别二维码"><a href="#PHP识别二维码" class="headerlink" title="PHP识别二维码"></a>PHP识别二维码</h4><h4 id="其他形态的二维码"><a href="#其他形态的二维码" class="headerlink" title="其他形态的二维码"></a>其他形态的二维码</h4>
     
   </div>
 
@@ -269,10 +263,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/08/16/消息队列的实现及应用/">
+    <a class="show pull-left" href="/2019/01/26/git命令/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2018/12/10/SSL协议配置报告/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
