@@ -22,7 +22,7 @@
 <meta property="og:url" content="http://yoursite.com/2019/01/03/Laravel-项目开发命令集/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="常用命令 查看laravel版本  // 进入项目目录后php artisan -V   创建laravel项目  composer create-project –prefer-dist laravel/laravel projectname// 安装指定版本composer create-project laravel/laravel projectname 5.7.x-dev –prefer">
-<meta property="og:updated_time" content="2019-03-08T03:26:18.000Z">
+<meta property="og:updated_time" content="2019-04-07T09:37:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel 项目开发命令集">
 <meta name="twitter:description" content="常用命令 查看laravel版本  // 进入项目目录后php artisan -V   创建laravel项目  composer create-project –prefer-dist laravel/laravel projectname// 安装指定版本composer create-project laravel/laravel projectname 5.7.x-dev –prefer">
@@ -151,7 +151,7 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Homestead使用"><span class="toc-text">Homestead使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vagrant相关命令"><span class="toc-text">vagrant相关命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#laravel-web-项目中遇到的各种错误"><span class="toc-text">laravel web 项目中遇到的各种错误</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装laravel-mix-后，执行-npm-run-watch-poll-报错："><span class="toc-text">安装laravel mix 后，执行 npm run watch-poll 报错：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用Homestead配置laravel开发环境后网页报错“No-input-file-specified-”"><span class="toc-text">用Homestead配置laravel开发环境后网页报错“No input file specified.”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用Homestead配置laravel开发环境后网页报错-quot-500-Internal-Privoxy-Error-quot"><span class="toc-text">用Homestead配置laravel开发环境后网页报错"500 Internal Privoxy Error"</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误代码追踪"><span class="toc-text">错误代码追踪</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Homestead使用"><span class="toc-text">Homestead使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vagrant相关命令"><span class="toc-text">vagrant相关命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#laravel-web-项目中遇到的各种错误"><span class="toc-text">laravel web 项目中遇到的各种错误</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装laravel-mix-后，执行-npm-run-watch-poll-报错："><span class="toc-text">安装laravel mix 后，执行 npm run watch-poll 报错：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用Homestead配置laravel开发环境后网页报错“No-input-file-specified-”"><span class="toc-text">用Homestead配置laravel开发环境后网页报错“No input file specified.”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用Homestead配置laravel开发环境后网页报错-quot-500-Internal-Privoxy-Error-quot"><span class="toc-text">用Homestead配置laravel开发环境后网页报错"500 Internal Privoxy Error"</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误代码追踪"><span class="toc-text">错误代码追踪</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Phpstrom-快捷键"><span class="toc-text">Phpstrom 快捷键</span></a></li></ol></li></ol></li></ol>
   </div>
 
 
@@ -228,6 +228,16 @@
 <p>php artisan migrate</p>
 </blockquote>
 </li>
+<li><p>创建seeder编写测试数据</p>
+<blockquote>
+<p>php artisan make:seeder NameSeeder</p>
+</blockquote>
+</li>
+<li><p>执行seeder生成测试数据</p>
+<blockquote>
+<p>php artisan db:seed –class=NameSeeder</p>
+</blockquote>
+</li>
 <li><p>启动本地服务</p>
 <blockquote>
 <p>php artisan serve</p>
@@ -236,6 +246,11 @@
 <li><p>生成系统内置的脚手架(用户认证)</p>
 <blockquote>
 <p>php artisan make:auth</p>
+</blockquote>
+</li>
+<li><p>laravel-admin</p>
+<blockquote>
+<p>composer require encore/laravel-admin<br>php artisan vendor:publish –provider=”Encore\Admin\AdminServiceProvider”<br>php artisan admin:install</p>
 </blockquote>
 </li>
 <li><p>composer扩展包安装、更新</p>
@@ -304,6 +319,11 @@
 <li>解决方法：关掉VPN</li>
 </ul>
 <h2 id="错误代码追踪"><a href="#错误代码追踪" class="headerlink" title="错误代码追踪"></a>错误代码追踪</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. 用 PHPStorm 来写代码，追踪代码也十分方便。</div><div class="line">右键一个类、方法、函数、变量 -&gt; Go To -&gt; Declaration 可以找到定义这个东西的代码</div><div class="line">右键一个类、方法、函数、变量 -&gt; Find Usage 可以找到所有调用了这个东西的代码</div><div class="line">这两个方法足以快速追踪绝大多数项目的源代码</div><div class="line">2. 查看错误日志</div><div class="line">在 storage/logs 中查看错误日志并分析错误</div></pre></td></tr></table></figure>
+<h4 id="Phpstrom-快捷键"><a href="#Phpstrom-快捷键" class="headerlink" title="Phpstrom 快捷键"></a>Phpstrom 快捷键</h4><ul>
+<li>全局搜索: command + shift + F</li>
+<li>全局搜索并修改: command + shift + R</li>
+</ul>
+
     
   </div>
 
