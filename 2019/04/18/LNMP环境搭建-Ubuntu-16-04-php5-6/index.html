@@ -15,16 +15,16 @@
     <meta name="keywords" content="后台,PHP,Java" />
   
 
-  <meta name="description" content="LNMP环境搭建虚拟机：VMware镜像：Ubuntu16.04(64位桌面版)Nginx安装： sudo apt-get install nginx -y  查看nginx版本nginx -v 开启nginx服务sudo service nginx start   php5.6安装：由于Ubuntu16.04自带php7，所以先要删除php7及其相关文件  sudo apt-get purge">
+  <meta name="description" content="LNMP环境搭建虚拟机：VMware镜像：Ubuntu16.04 (ubuntu-16.04.6-desktop-amd64.iso)Nginx安装： sudo apt-get install nginx -y   查看nginx版本  nginx -v   开启nginx服务  sudo service nginx start    php5.6安装：由于Ubuntu16.04自带php7，所以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LNMP环境搭建--Ubuntu 16.04+php5.6">
 <meta property="og:url" content="http://yoursite.com/2019/04/18/LNMP环境搭建-Ubuntu-16-04-php5-6/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="LNMP环境搭建虚拟机：VMware镜像：Ubuntu16.04(64位桌面版)Nginx安装： sudo apt-get install nginx -y  查看nginx版本nginx -v 开启nginx服务sudo service nginx start   php5.6安装：由于Ubuntu16.04自带php7，所以先要删除php7及其相关文件  sudo apt-get purge">
-<meta property="og:updated_time" content="2019-04-22T06:37:54.000Z">
+<meta property="og:description" content="LNMP环境搭建虚拟机：VMware镜像：Ubuntu16.04 (ubuntu-16.04.6-desktop-amd64.iso)Nginx安装： sudo apt-get install nginx -y   查看nginx版本  nginx -v   开启nginx服务  sudo service nginx start    php5.6安装：由于Ubuntu16.04自带php7，所以">
+<meta property="og:updated_time" content="2019-04-22T10:48:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LNMP环境搭建--Ubuntu 16.04+php5.6">
-<meta name="twitter:description" content="LNMP环境搭建虚拟机：VMware镜像：Ubuntu16.04(64位桌面版)Nginx安装： sudo apt-get install nginx -y  查看nginx版本nginx -v 开启nginx服务sudo service nginx start   php5.6安装：由于Ubuntu16.04自带php7，所以先要删除php7及其相关文件  sudo apt-get purge">
+<meta name="twitter:description" content="LNMP环境搭建虚拟机：VMware镜像：Ubuntu16.04 (ubuntu-16.04.6-desktop-amd64.iso)Nginx安装： sudo apt-get install nginx -y   查看nginx版本  nginx -v   开启nginx服务  sudo service nginx start    php5.6安装：由于Ubuntu16.04自带php7，所以">
 
   
 
@@ -150,7 +150,7 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LNMP环境搭建"><span class="toc-text">LNMP环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟机：VMware"><span class="toc-text">虚拟机：VMware</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#镜像：Ubuntu16-04-64位桌面版"><span class="toc-text">镜像：Ubuntu16.04(64位桌面版)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nginx安装："><span class="toc-text">Nginx安装：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#php5-6安装："><span class="toc-text">php5.6安装：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql安装"><span class="toc-text">mysql安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nginx-php"><span class="toc-text">nginx-php</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装git"><span class="toc-text">安装git</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LNMP环境搭建"><span class="toc-text">LNMP环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟机：VMware"><span class="toc-text">虚拟机：VMware</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#镜像：Ubuntu16-04-ubuntu-16-04-6-desktop-amd64-iso"><span class="toc-text">镜像：Ubuntu16.04 (ubuntu-16.04.6-desktop-amd64.iso)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nginx安装："><span class="toc-text">Nginx安装：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#php5-6安装："><span class="toc-text">php5.6安装：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql安装"><span class="toc-text">mysql安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nginx-php"><span class="toc-text">nginx-php</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装git"><span class="toc-text">安装git</span></a></li></ol></li></ol>
   </div>
 
 
@@ -191,56 +191,93 @@
 
   <div class="article-content">
     
-      <h3 id="LNMP环境搭建"><a href="#LNMP环境搭建" class="headerlink" title="LNMP环境搭建"></a>LNMP环境搭建</h3><h4 id="虚拟机：VMware"><a href="#虚拟机：VMware" class="headerlink" title="虚拟机：VMware"></a>虚拟机：VMware</h4><h4 id="镜像：Ubuntu16-04-64位桌面版"><a href="#镜像：Ubuntu16-04-64位桌面版" class="headerlink" title="镜像：Ubuntu16.04(64位桌面版)"></a>镜像：Ubuntu16.04(64位桌面版)</h4><h4 id="Nginx安装："><a href="#Nginx安装：" class="headerlink" title="Nginx安装："></a>Nginx安装：</h4><blockquote>
+      <h3 id="LNMP环境搭建"><a href="#LNMP环境搭建" class="headerlink" title="LNMP环境搭建"></a>LNMP环境搭建</h3><h4 id="虚拟机：VMware"><a href="#虚拟机：VMware" class="headerlink" title="虚拟机：VMware"></a>虚拟机：VMware</h4><h4 id="镜像：Ubuntu16-04-ubuntu-16-04-6-desktop-amd64-iso"><a href="#镜像：Ubuntu16-04-ubuntu-16-04-6-desktop-amd64-iso" class="headerlink" title="镜像：Ubuntu16.04 (ubuntu-16.04.6-desktop-amd64.iso)"></a>镜像：Ubuntu16.04 (<a href="http://mirrors.ustc.edu.cn/ubuntu-releases/16.04/" target="_blank" rel="external">ubuntu-16.04.6-desktop-amd64.iso</a>)</h4><h4 id="Nginx安装："><a href="#Nginx安装：" class="headerlink" title="Nginx安装："></a>Nginx安装：</h4><blockquote>
 <p>sudo apt-get install nginx -y</p>
-<ul>
-<li>查看nginx版本<br>nginx -v</li>
-<li>开启nginx服务<br>sudo service nginx start</li>
-</ul>
 </blockquote>
+<ul>
+<li><p>查看nginx版本</p>
+<blockquote>
+<p>nginx -v</p>
+</blockquote>
+</li>
+<li><p>开启nginx服务</p>
+<blockquote>
+<p>sudo service nginx start</p>
+</blockquote>
+</li>
+</ul>
 <h4 id="php5-6安装："><a href="#php5-6安装：" class="headerlink" title="php5.6安装："></a>php5.6安装：</h4><p>由于Ubuntu16.04自带php7，所以先要删除php7及其相关文件</p>
 <blockquote>
 <p>sudo apt-get purge `dpkg -l | grep php| awk ‘{print $2}’ |tr “\n” “ “`</p>
-<ul>
-<li>添加PPA<br>sudo apt-get install software-properties-common -y<br>sudo add-apt-repository ppa:ondrej/php -y<br>sudo apt-get update -y</li>
-<li>安装php5，6<br>sudo apt-get install php5.6 -y</li>
-<li>安装扩展<br>sudo apt-get install php5.6-mysql php5.6-common php5.6-curl php5.6-cli php5.6-mcrypt php5.6-mbstring php5.6-dom</li>
-<li>配置php5.6<br>sudo vim /etc/php/5.6/fpm/php.ini<br>找到cgi.fix_pathinfo选项，去掉注释;，然后将值设置为0:<br>cgi.fix_pathinfo = 0;</li>
-</ul>
 </blockquote>
+<ul>
+<li><p>添加PPA</p>
+<blockquote>
+<p>sudo apt-get install software-properties-common -y<br>sudo add-apt-repository ppa:ondrej/php -y<br>sudo apt-get update -y</p>
+</blockquote>
+</li>
+<li><p>安装php5，6</p>
+<blockquote>
+<p>sudo apt-get install php5.6 -y</p>
+</blockquote>
+</li>
+<li><p>安装扩展</p>
+<blockquote>
+<p>sudo apt-get install php5.6-mysql php5.6-common php5.6-curl php5.6-cli php5.6-mcrypt php5.6-mbstring php5.6-dom</p>
+</blockquote>
+</li>
+<li><p>配置php5.6</p>
+<blockquote>
+<p>sudo vim /etc/php/5.6/fpm/php.ini<br>找到cgi.fix_pathinfo选项，去掉注释;，然后将值设置为0:<br>cgi.fix_pathinfo = 0;</p>
+</blockquote>
+</li>
+</ul>
 <h4 id="mysql安装"><a href="#mysql安装" class="headerlink" title="mysql安装"></a>mysql安装</h4><blockquote>
 <p>sudo apt-get install mysql-server<br>sudo apt-get install mysql-client</p>
 </blockquote>
 <h4 id="nginx-php"><a href="#nginx-php" class="headerlink" title="nginx-php"></a>nginx-php</h4><blockquote>
 <p>sudo apt-get install php5.6-fpm<br>sudo service php5.6-fpm restart</p>
-<ul>
-<li>检查fpm运行状态<br>netstat -ano |grep fpm</li>
-<li>修改nginx配置<br>sudo vim /etc/nginx/sites-availabled/default<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</div><div class="line">       #</div><div class="line">       location ~ \.php$ &#123;</div><div class="line">               include snippets/fastcgi-php.conf;</div><div class="line">               fastcgi_pass unix:/run/php/php5.6-fpm.sock;</div><div class="line">               fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</div><div class="line">               include fastcgi_params;</div><div class="line">       &#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
 </blockquote>
 <ul>
-<li>重启nginx和fpm<blockquote>
+<li><p>检查fpm运行状态</p>
+<blockquote>
+<p>netstat -ano |grep fpm</p>
+</blockquote>
+</li>
+<li><p>修改nginx配置  </p>
+<blockquote>
+<p>sudo vim /etc/nginx/sites-availabled/default</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</div><div class="line">       #</div><div class="line">       location ~ \.php$ &#123;</div><div class="line">               include snippets/fastcgi-php.conf;</div><div class="line">               fastcgi_pass unix:/run/php/php5.6-fpm.sock;</div><div class="line">               fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</div><div class="line">               include fastcgi_params;</div><div class="line">       &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>重启nginx和fpm</p>
+<blockquote>
 <p>service php5.6-fpm restart<br>service nginx restart</p>
 </blockquote>
 </li>
-<li>测试nginx是否解析php<br>在nginx配置文件中配置的root目录(我的是<code>/var/www/html</code>)中新建php信息页<blockquote>
+<li><p>测试nginx是否解析php<br>在nginx配置文件中配置的root目录(我的是<code>/var/www/html</code>)中新建php信息页</p>
+<blockquote>
 <p>sudo chmod 777 /var/www/html  //设置权限<br>echo “&lt;?php phpinfo(); “ &gt; /var/www/html/phpinfo.php</p>
 </blockquote>
 </li>
 </ul>
 <p>访问localhost/phpinfo.php看到php信息页则成功</p>
 <ul>
-<li>遇到问题：访问phpinfo.php时显示空白页<br>原因：nginx与php-fpm间的小bug，nginx无法正确的将php文件的地址传递给php-fpm解析，相当于php-fpm接收到了请求，但这个请求却只想一个不存在的文件，于是返回空结果。<br>解决：修改nginx默认的fastcgi_params配置文件：<code>/etc/nginx/fastcgi_params</code>在文件的最后增加两行  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</div><div class="line">fastcgi_param PATH_INFO       $fastcgi_script_name;</div></pre></td></tr></table></figure>
-</li>
+<li>遇到问题：访问phpinfo.php时显示空白页<br>原因：nginx与php-fpm间的小bug，nginx无法正确的将php文件的地址传递给php-fpm解析，相当于php-fpm接收到了请求，但这个请求却只想一个不存在的文件，于是返回空结果。<br>解决：修改nginx默认的fastcgi_params配置文件：<code>/etc/nginx/fastcgi_params</code>在文件的最后增加两行</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</div><div class="line">fastcgi_param PATH_INFO       $fastcgi_script_name;</div></pre></td></tr></table></figure>
 <p>最后重启nginx、fpm服务即可</p>
 <h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h4><blockquote>
 <p>sudo apt install git  </p>
-<ul>
-<li>生成ssh<br>git config –global user.name “yourname”  // 与gitlab保持一致<br>git config –global user.email “youremail@xx.com”  // 与gitlab保持一致<br>ssh-keygen -t rsa -C “youremail@xx.com”  // 生成ssh密钥，一路回车。进入.ssh目录复制id_rsa.pub文件的内容，粘贴到gitlab新增的sshkey中。</li>
-</ul>
 </blockquote>
+<ul>
+<li>生成ssh<blockquote>
+<p>git config –global user.name “yourname”  // 与gitlab保持一致<br>git config –global user.email “youremail@xx.com”  // 与gitlab保持一致<br>ssh-keygen -t rsa -C “youremail@xx.com”  // 生成ssh密钥，一路回车。进入.ssh目录复制id_rsa.pub文件的内容，粘贴到gitlab新增的sshkey中。</p>
+</blockquote>
+</li>
+</ul>
 <p>参考:<br> <a href="https://blog.csdn.net/think_ycx/article/details/84201277" target="_blank" rel="external">Ubuntu 16.04安装LNMP:nginx1.10 mysql5.7 php5.6</a><br> <a href="https://blog.csdn.net/feiniao8651/article/details/52768911" target="_blank" rel="external">nginx+php-fpm配置后页面显示空白的解决方法</a></p>
 
     
