@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>git命令 | Hexo</title>
+  <title>源码学习小记 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,16 +15,16 @@
     <meta name="keywords" content="后台,PHP,Java" />
   
 
-  <meta name="description" content="常用 初始化仓库(进入项目根目录)  git init   将所有文件提交到索引仓库  git add .   将索引仓库中的文件添加到git仓库  git commit -m “message”   将master分支推送到远程仓库master分支  git push origin master   切换分支  git checkout branchname   克隆仓库分支  git clon">
+  <meta name="description" content="一、php - MongoCollection类  方法:  创建一个新的集合，返回新集合对象public MongoCollection::__construct ( MongoDB $db , string $name )   二、curl请求api并获得返回数据12345678910111213141516171819202122232425262728293031323334353637">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git命令">
-<meta property="og:url" content="http://yoursite.com/2019/01/26/git命令/index.html">
+<meta property="og:title" content="源码学习小记">
+<meta property="og:url" content="http://yoursite.com/2019/04/24/源码学习小记/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="常用 初始化仓库(进入项目根目录)  git init   将所有文件提交到索引仓库  git add .   将索引仓库中的文件添加到git仓库  git commit -m “message”   将master分支推送到远程仓库master分支  git push origin master   切换分支  git checkout branchname   克隆仓库分支  git clon">
-<meta property="og:updated_time" content="2019-04-26T10:10:12.000Z">
+<meta property="og:description" content="一、php - MongoCollection类  方法:  创建一个新的集合，返回新集合对象public MongoCollection::__construct ( MongoDB $db , string $name )   二、curl请求api并获得返回数据12345678910111213141516171819202122232425262728293031323334353637">
+<meta property="og:updated_time" content="2019-04-26T10:32:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git命令">
-<meta name="twitter:description" content="常用 初始化仓库(进入项目根目录)  git init   将所有文件提交到索引仓库  git add .   将索引仓库中的文件添加到git仓库  git commit -m “message”   将master分支推送到远程仓库master分支  git push origin master   切换分支  git checkout branchname   克隆仓库分支  git clon">
+<meta name="twitter:title" content="源码学习小记">
+<meta name="twitter:description" content="一、php - MongoCollection类  方法:  创建一个新的集合，返回新集合对象public MongoCollection::__construct ( MongoDB $db , string $name )   二、curl请求api并获得返回数据12345678910111213141516171819202122232425262728293031323334353637">
 
   
 
@@ -148,22 +148,17 @@
 </div>
 
 
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用"><span class="toc-text">常用</span></a></li></ol>
-  </div>
-
 
 
 <div class="content content-post CENTER">
-   <article id="post-git命令" class="article article-type-post" itemprop="blogPost">
+   <article id="post-源码学习小记" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">git命令</h1>
+    <h1 class="post-title">源码学习小记</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2019.01.26</span>
+        <span>2019.04.24</span>
       </span>
 
       
@@ -191,69 +186,15 @@
 
   <div class="article-content">
     
-      <h4 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h4><ul>
-<li><p>初始化仓库(进入项目根目录)</p>
-<blockquote>
-<p>git init</p>
-</blockquote>
-</li>
-<li><p>将所有文件提交到索引仓库</p>
-<blockquote>
-<p>git add .</p>
-</blockquote>
-</li>
-<li><p>将索引仓库中的文件添加到git仓库</p>
-<blockquote>
-<p>git commit -m “message”</p>
-</blockquote>
-</li>
-<li><p>将master分支推送到远程仓库master分支</p>
-<blockquote>
-<p>git push origin master</p>
-</blockquote>
-</li>
-<li><p>切换分支</p>
-<blockquote>
-<p>git checkout branchname</p>
-</blockquote>
-</li>
-<li><p>克隆仓库分支</p>
-<blockquote>
-<p>git clone -b branch <a href="http://github.xxx.git" target="_blank" rel="external">http://github.xxx.git</a>  </p>
-</blockquote>
-</li>
-<li><p>拉取远程分支</p>
-<blockquote>
-<p>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;<br>git pull origin master:brantest  // 将远程主机origin的master分支拉取过来，与本地的brantest分支合并。<br>git pull origin master  // 将远程origin主机的master分支拉取过来和本地的当前分支进行合并。  </p>
-</blockquote>
-</li>
-<li><p>将本地仓库追踪到远程仓库</p>
+      <ul>
+<li>一、php - MongoCollection类</li>
+</ul>
+<p>方法:</p>
 <ol>
-<li>初始化本地仓库</li>
-<li>将本地master分支追踪到远程分支，远程分支别名origin，运行以下命令:<blockquote>
-<p>git remote add origin <a href="https://github.com/jat0824/process_schedule.git" target="_blank" rel="external">https://github.com/jat0824/process_schedule.git</a></p>
-</blockquote>
-</li>
-<li>将本地文件提交到仓库并推送到远程仓库<blockquote>
-<p>git add .<br>   git commit -m “message”<br>   git push origin master</p>
-</blockquote>
-</li>
+<li>创建一个新的集合，返回新集合对象<br>public MongoCollection::__construct ( MongoDB $db , string $name )</li>
 </ol>
-</li>
-<li><p>新建本地分支并切换到新分支，推到远程仓库</p>
-<blockquote>
-<p>git checkout -b newbranch<br>git push origin newbranch</p>
-</blockquote>
-</li>
-<li><p>新建远程分支</p>
-<blockquote>
-<p>git push origin newbranch:newbranch   // 新建远程分支newbranch</p>
-</blockquote>
-</li>
-<li><p>删除远程分支</p>
-<blockquote>
-<p>git push origin :branch   // 删除branch分支</p>
-</blockquote>
+<ul>
+<li>二、curl请求api并获得返回数据<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">curl_get</span><span class="params">($url)</span></span>&#123;</div><div class="line"> </div><div class="line">       $testurl = $url;</div><div class="line">       $ch = curl_init();  </div><div class="line">       curl_setopt($ch, CURLOPT_URL, $testurl);  </div><div class="line">        <span class="comment">//参数为1表示传输数据，为0表示直接输出显示。</span></div><div class="line">       curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</div><div class="line">        <span class="comment">//参数为0表示不带头文件，为1表示带头文件</span></div><div class="line">       curl_setopt($ch, CURLOPT_HEADER,<span class="number">0</span>);</div><div class="line">       $output = curl_exec($ch); </div><div class="line">       curl_close($ch); </div><div class="line">       <span class="keyword">return</span> $output;</div><div class="line"> &#125;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * url:访问路径</span></div><div class="line"><span class="comment"> * array:要传递的数组</span></div><div class="line"><span class="comment"> * */</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">curl_post</span><span class="params">($url,$array)</span></span>&#123;</div><div class="line"> </div><div class="line">    $curl = curl_init();</div><div class="line">    <span class="comment">//设置提交的url</span></div><div class="line">    curl_setopt($curl, CURLOPT_URL, $url);</div><div class="line">    <span class="comment">//设置头文件的信息作为数据流输出</span></div><div class="line">    curl_setopt($curl, CURLOPT_HEADER, <span class="number">0</span>);</div><div class="line">    <span class="comment">//设置获取的信息以文件流的形式返回，而不是直接输出。</span></div><div class="line">    curl_setopt($curl, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</div><div class="line">    <span class="comment">//设置post方式提交</span></div><div class="line">    curl_setopt($curl, CURLOPT_POST, <span class="number">1</span>);</div><div class="line">    <span class="comment">//设置post数据</span></div><div class="line">    $post_data = $array;</div><div class="line">    curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);</div><div class="line">    <span class="comment">//执行命令</span></div><div class="line">    $data = curl_exec($curl);</div><div class="line">    <span class="comment">//关闭URL请求</span></div><div class="line">    curl_close($curl);</div><div class="line">  <span class="comment">//获得数据并返回</span></div><div class="line">    <span class="keyword">return</span> $data;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -293,10 +234,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2019/01/11/Laravel-基于多表的用户认证（前后台用户）/">
+    <a class="show pull-left" href="/2019/04/18/LNMP环境搭建-Ubuntu-16-04-php5-6/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2019/02/21/PHP-QRCode生成二维码/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
