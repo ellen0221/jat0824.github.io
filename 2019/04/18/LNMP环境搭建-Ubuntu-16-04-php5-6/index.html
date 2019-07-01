@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://yoursite.com/2019/04/18/LNMP环境搭建-Ubuntu-16-04-php5-6/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="LNMP环境搭建虚拟机：VMware镜像：Ubuntu16.04 (ubuntu-16.04.6-desktop-amd64.iso)Nginx安装： sudo apt-get install nginx -y   查看nginx版本  nginx -v   开启nginx服务  sudo service nginx start    php5.6安装：由于Ubuntu16.04自带php7，所以">
-<meta property="og:updated_time" content="2019-04-22T10:48:01.000Z">
+<meta property="og:updated_time" content="2019-05-08T07:59:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LNMP环境搭建--Ubuntu 16.04+php5.6">
 <meta name="twitter:description" content="LNMP环境搭建虚拟机：VMware镜像：Ubuntu16.04 (ubuntu-16.04.6-desktop-amd64.iso)Nginx安装： sudo apt-get install nginx -y   查看nginx版本  nginx -v   开启nginx服务  sudo service nginx start    php5.6安装：由于Ubuntu16.04自带php7，所以">
@@ -150,7 +150,7 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LNMP环境搭建"><span class="toc-text">LNMP环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟机：VMware"><span class="toc-text">虚拟机：VMware</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#镜像：Ubuntu16-04-ubuntu-16-04-6-desktop-amd64-iso"><span class="toc-text">镜像：Ubuntu16.04 (ubuntu-16.04.6-desktop-amd64.iso)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nginx安装："><span class="toc-text">Nginx安装：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#php5-6安装："><span class="toc-text">php5.6安装：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql安装"><span class="toc-text">mysql安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nginx-php"><span class="toc-text">nginx-php</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装git"><span class="toc-text">安装git</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LNMP环境搭建"><span class="toc-text">LNMP环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟机：VMware"><span class="toc-text">虚拟机：VMware</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#镜像：Ubuntu16-04-ubuntu-16-04-6-desktop-amd64-iso"><span class="toc-text">镜像：Ubuntu16.04 (ubuntu-16.04.6-desktop-amd64.iso)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nginx安装："><span class="toc-text">Nginx安装：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#php5-6安装："><span class="toc-text">php5.6安装：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nginx-php"><span class="toc-text">nginx-php</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql安装"><span class="toc-text">mysql安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装git"><span class="toc-text">安装git</span></a></li></ol></li></ol>
   </div>
 
 
@@ -174,6 +174,11 @@
       
 
       
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/环境搭建/">环境搭建</a>
+  </span>
+
 
 
       
@@ -228,15 +233,12 @@
 </li>
 <li><p>配置php5.6</p>
 <blockquote>
-<p>sudo vim /etc/php/5.6/fpm/php.ini<br>找到cgi.fix_pathinfo选项，去掉注释;，然后将值设置为0:<br>cgi.fix_pathinfo = 0;</p>
+<p>sudo apt-get install php5.6-fpm<br>sudo vim /etc/php/5.6/fpm/php.ini<br>找到cgi.fix_pathinfo选项，去掉注释;，然后将值设置为0:<br>cgi.fix_pathinfo=0;</p>
 </blockquote>
 </li>
 </ul>
-<h4 id="mysql安装"><a href="#mysql安装" class="headerlink" title="mysql安装"></a>mysql安装</h4><blockquote>
-<p>sudo apt-get install mysql-server<br>sudo apt-get install mysql-client</p>
-</blockquote>
 <h4 id="nginx-php"><a href="#nginx-php" class="headerlink" title="nginx-php"></a>nginx-php</h4><blockquote>
-<p>sudo apt-get install php5.6-fpm<br>sudo service php5.6-fpm restart</p>
+<p>sudo service php5.6-fpm restart</p>
 </blockquote>
 <ul>
 <li><p>检查fpm运行状态</p>
@@ -250,16 +252,17 @@
 </blockquote>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</div><div class="line">       #</div><div class="line">       location ~ \.php$ &#123;</div><div class="line">               include snippets/fastcgi-php.conf;</div><div class="line">               fastcgi_pass unix:/run/php/php5.6-fpm.sock;</div><div class="line">               fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</div><div class="line">               include fastcgi_params;</div><div class="line">       &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">添加index.php</div><div class="line">index index.php index.html index.htm index.nginx-debian.html;</div><div class="line">......</div><div class="line"> # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</div><div class="line">        #</div><div class="line">        location ~ \.php$ &#123;</div><div class="line">                include snippets/fastcgi-php.conf;</div><div class="line">                fastcgi_pass unix:/run/php/php5.6-fpm.sock;</div><div class="line">                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</div><div class="line">                include fastcgi_params;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p>随后在<code>/etc/nginx/fastcgi_params</code>文件的最后增加两行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</div><div class="line">fastcgi_param PATH_INFO       $fastcgi_script_name;</div></pre></td></tr></table></figure></p>
 <ul>
 <li><p>重启nginx和fpm</p>
 <blockquote>
-<p>service php5.6-fpm restart<br>service nginx restart</p>
+<p>sudo service php5.6-fpm restart<br>sudo service nginx restart</p>
 </blockquote>
 </li>
 <li><p>测试nginx是否解析php<br>在nginx配置文件中配置的root目录(我的是<code>/var/www/html</code>)中新建php信息页</p>
 <blockquote>
-<p>sudo chmod 777 /var/www/html  //设置权限<br>echo “&lt;?php phpinfo(); “ &gt; /var/www/html/phpinfo.php</p>
+<p>sudo chmod 777 /var/www/html  //设置权限<br>echo “&lt;?php phpinfo(); ?&gt;” /var/www/html/phpinfo.php</p>
 </blockquote>
 </li>
 </ul>
@@ -269,6 +272,9 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</div><div class="line">fastcgi_param PATH_INFO       $fastcgi_script_name;</div></pre></td></tr></table></figure>
 <p>最后重启nginx、fpm服务即可</p>
+<h4 id="mysql安装"><a href="#mysql安装" class="headerlink" title="mysql安装"></a>mysql安装</h4><blockquote>
+<p>sudo apt-get install mysql-server<br>sudo apt-get install mysql-client</p>
+</blockquote>
 <h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h4><blockquote>
 <p>sudo apt install git  </p>
 </blockquote>

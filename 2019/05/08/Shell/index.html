@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Shell | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Shell," />
+  
+
+  <meta name="description" content="Shell脚本：一个规范的Shell脚本在第一行会指出由哪个程序（解释器）来执行脚本中的内容，这一行内容在Linux bash的编程一般为：#！/bin/bash 或 #！/bin/sh注意：    （1）在Shell中如果一行的第一个字母是#,则是注释，但是上面两个是写在第一行，所以不是脚本注释行，如果写在某个命令之后，则变成注释行。    （2）sh为bash的软链接，大多数情况下，脚本的开头">
+<meta name="keywords" content="Shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell">
+<meta property="og:url" content="http://yoursite.com/2019/05/08/Shell/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Shell脚本：一个规范的Shell脚本在第一行会指出由哪个程序（解释器）来执行脚本中的内容，这一行内容在Linux bash的编程一般为：#！/bin/bash 或 #！/bin/sh注意：    （1）在Shell中如果一行的第一个字母是#,则是注释，但是上面两个是写在第一行，所以不是脚本注释行，如果写在某个命令之后，则变成注释行。    （2）sh为bash的软链接，大多数情况下，脚本的开头">
+<meta property="og:updated_time" content="2019-05-08T08:45:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shell">
+<meta name="twitter:description" content="Shell脚本：一个规范的Shell脚本在第一行会指出由哪个程序（解释器）来执行脚本中的内容，这一行内容在Linux bash的编程一般为：#！/bin/bash 或 #！/bin/sh注意：    （1）在Shell中如果一行的第一个字母是#,则是注释，但是上面两个是写在第一行，所以不是脚本注释行，如果写在某个命令之后，则变成注释行。    （2）sh为bash的软链接，大多数情况下，脚本的开头">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">-&gt;</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">-&gt;</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Shell脚本："><span class="toc-text">Shell脚本：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运行Shell脚本"><span class="toc-text">运行Shell脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Shell脚本命令执行顺序"><span class="toc-text">Shell脚本命令执行顺序</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Shell" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Shell</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.05.08</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Xj</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h4 id="Shell脚本："><a href="#Shell脚本：" class="headerlink" title="Shell脚本："></a>Shell脚本：</h4><p>一个规范的Shell脚本在第一行会指出由哪个程序（解释器）来执行脚本中的内容，这一行内容在Linux bash的编程一般为：<br>#！/bin/bash 或 #！/bin/sh<br>注意：<br>    （1）在Shell中如果一行的第一个字母是#,则是注释，但是上面两个是写在第一行，所以不是脚本注释行，如果写在某个命令之后，则变成注释行。<br>    （2）sh为bash的软链接，大多数情况下，脚本的开头使用“#!/bin/bash”和“#!/bin/sh”是没有区别的，但更规范的写法是在脚本的开头使用“#!/bin/bash”。</p>
+<p>参考：<a href="https://blog.csdn.net/timchen525/article/details/76407735" target="_blank" rel="external">https://blog.csdn.net/timchen525/article/details/76407735</a> </p>
+<h4 id="运行Shell脚本"><a href="#运行Shell脚本" class="headerlink" title="运行Shell脚本"></a>运行Shell脚本</h4><p><strong>1.作为可执行程序</strong></p>
+<p>编写一个shell脚本<code>test.sh</code>，并cd到相应目录：</p>
+<blockquote>
+<p>chmod +x ./test.sh  #使脚本具有执行权限<br>  ./test.sh  #执行脚本</p>
+</blockquote>
+<p><strong>2.作为解释器参数</strong></p>
+<p>这种运行方式是，直接运行解释器，其参数就是 shell 脚本的文件名：</p>
+<blockquote>
+<p>/bin/bash test.sh<br>  /bin/php test.php</p>
+</blockquote>
+<p>这种方式运行的脚本，不需要在第一行指定解释器信息，写了也没用。</p>
+<h4 id="Shell脚本命令执行顺序"><a href="#Shell脚本命令执行顺序" class="headerlink" title="Shell脚本命令执行顺序"></a>Shell脚本命令执行顺序</h4><p><strong>1.使用<code>;</code>：command1;command2</strong></p>
+<p>命令之间没有逻辑关系。分号连接的命令会按照顺序从前向后依次执行，但分号两端的命令之间没有任何逻辑关系，所有写出来的命令最终都会被执行，即使分号前面的命令出错也不影响后面的命令。</p>
+<p><strong>2.使用<code>&amp;</code>：command1 &amp; command2</strong></p>
+<p>&amp;表示将其前面的命令放入后台执行，放入后台后会立即返回到bash环境让用户可以继续和bash交互。如果&amp;符号连接了两个命令，则其前面的命令被放入后台，立即执行后面的命令，所以可以简单地认为这两个命令是并行执行的，两端的命令之间也没有任何逻辑关系。</p>
+<p><strong>3.使用<code>&amp;&amp;</code>：command1 &amp;&amp; command2</strong></p>
+<p>当command1<strong>执行成功</strong>后执行command2</p>
+<p><strong>4.使用<code>||</code>：command1 || command2</strong></p>
+<p>当command1<strong>执行失败</strong>才执行command2</p>
+<p><strong>5.使用<code>()</code>和<code>{}</code>将命令结合在一起：(command1;command2;…)、{ command1;command2;…;}</strong></p>
+<p><strong>花括号中命令书写格式： <code>{</code> 后面有一个空格， <code>}</code>前面要有<code>;</code> 例：{ command1;command2;…;}</strong></p>
+<ul>
+<li>注意：用花括号括起来的成组命令只是在本Shell内执行命令表，不产生新的进程；而用圆括号括起来的成组命令是在新的子Shell内执行，要建立新的子进程。因此，在圆括号内的命令不会改变父Shell的变量值及工作目录等。**</li>
+</ul>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">Xj</span>
+      <div class="donation-body">
+        <div class="tip text-center"></div>
+        <ul>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/05/08/MAC终端命令/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/05/09/Mac环境搭建-MNMP-Nginx-PHP7-1-thinkphp3-2为例/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

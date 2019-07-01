@@ -15,16 +15,16 @@
     <meta name="keywords" content="后台,PHP,Java" />
   
 
-  <meta name="description" content="常用 初始化仓库(进入项目根目录)  git init   将所有文件提交到索引仓库  git add .   将索引仓库中的文件添加到git仓库  git commit -m “message”   将master分支推送到远程仓库master分支  git push origin master   切换分支  git checkout branchname   克隆仓库分支  git clon">
+  <meta name="description" content="常用初始化仓库(进入项目根目录) git init  显示工作目录和暂存区的状态 git status  将所有文件提交到索引仓库 git add .  克隆远程仓库到本地目录localdir git clone http://github.xxx.git localdir  将索引仓库中的文件添加到git仓库 git commit -m “message”  将master分支推送到远程仓库ma">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git命令">
 <meta property="og:url" content="http://yoursite.com/2019/01/26/git命令/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="常用 初始化仓库(进入项目根目录)  git init   将所有文件提交到索引仓库  git add .   将索引仓库中的文件添加到git仓库  git commit -m “message”   将master分支推送到远程仓库master分支  git push origin master   切换分支  git checkout branchname   克隆仓库分支  git clon">
-<meta property="og:updated_time" content="2019-04-26T10:10:12.000Z">
+<meta property="og:description" content="常用初始化仓库(进入项目根目录) git init  显示工作目录和暂存区的状态 git status  将所有文件提交到索引仓库 git add .  克隆远程仓库到本地目录localdir git clone http://github.xxx.git localdir  将索引仓库中的文件添加到git仓库 git commit -m “message”  将master分支推送到远程仓库ma">
+<meta property="og:updated_time" content="2019-07-01T14:01:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git命令">
-<meta name="twitter:description" content="常用 初始化仓库(进入项目根目录)  git init   将所有文件提交到索引仓库  git add .   将索引仓库中的文件添加到git仓库  git commit -m “message”   将master分支推送到远程仓库master分支  git push origin master   切换分支  git checkout branchname   克隆仓库分支  git clon">
+<meta name="twitter:description" content="常用初始化仓库(进入项目根目录) git init  显示工作目录和暂存区的状态 git status  将所有文件提交到索引仓库 git add .  克隆远程仓库到本地目录localdir git clone http://github.xxx.git localdir  将索引仓库中的文件添加到git仓库 git commit -m “message”  将master分支推送到远程仓库ma">
 
   
 
@@ -150,7 +150,7 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用"><span class="toc-text">常用</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用"><span class="toc-text">常用</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#初始化仓库-进入项目根目录"><span class="toc-text">初始化仓库(进入项目根目录)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#显示工作目录和暂存区的状态"><span class="toc-text">显示工作目录和暂存区的状态</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将所有文件提交到索引仓库"><span class="toc-text">将所有文件提交到索引仓库</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#克隆远程仓库到本地目录localdir"><span class="toc-text">克隆远程仓库到本地目录localdir</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将索引仓库中的文件添加到git仓库"><span class="toc-text">将索引仓库中的文件添加到git仓库</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将master分支推送到远程仓库master分支"><span class="toc-text">将master分支推送到远程仓库master分支</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#切换分支"><span class="toc-text">切换分支</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#克隆仓库分支"><span class="toc-text">克隆仓库分支</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#拉取远程分支"><span class="toc-text">拉取远程分支</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将远程主机origin的master分支拉取过来，与本地的brantest分支合并。"><span class="toc-text">将远程主机origin的master分支拉取过来，与本地的brantest分支合并。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#强制拉取远程master分支-覆盖本地"><span class="toc-text">强制拉取远程master分支(覆盖本地)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#拉取远程跟踪的"><span class="toc-text">拉取远程跟踪的</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#拉取远程分支并创建本地分支"><span class="toc-text">拉取远程分支并创建本地分支</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#拉取远程分支remotebranch并创建本地分支newbranch"><span class="toc-text">拉取远程分支remotebranch并创建本地分支newbranch</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#查看所有远程分支"><span class="toc-text">查看所有远程分支</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#查看所有本地分支"><span class="toc-text">查看所有本地分支</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#删除本地分支branchname"><span class="toc-text">删除本地分支branchname</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#查看本地分支和远程分支的跟踪关系"><span class="toc-text">查看本地分支和远程分支的跟踪关系</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#跟踪远程分支"><span class="toc-text">跟踪远程分支</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将本地branch-name分支追踪远程分支origin-branch-name"><span class="toc-text">将本地branch-name分支追踪远程分支origin/branch-name</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#设置当前分支跟踪远程分支origin-serverfix"><span class="toc-text">设置当前分支跟踪远程分支origin/serverfix</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将本地仓库追踪到远程仓库"><span class="toc-text">将本地仓库追踪到远程仓库</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#新建本地分支并切换到新分支，推到远程仓库"><span class="toc-text">新建本地分支并切换到新分支，推到远程仓库</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#新建远程分支newbranch"><span class="toc-text">新建远程分支newbranch</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#删除远程分支branch"><span class="toc-text">删除远程分支branch</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#比较两个分支间所有变更的文件列表"><span class="toc-text">比较两个分支间所有变更的文件列表</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#查看本地具体文件改动细节"><span class="toc-text">查看本地具体文件改动细节</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#git-diff-M-的消除"><span class="toc-text">git diff ^M 的消除</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#分支重命名"><span class="toc-text">分支重命名</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#合并分支"><span class="toc-text">合并分支</span></a></li></ol></li></ol></li></ol>
   </div>
 
 
@@ -174,6 +174,11 @@
       
 
       
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+  </span>
+
 
 
       
@@ -191,71 +196,102 @@
 
   <div class="article-content">
     
-      <h4 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h4><ul>
-<li><p>初始化仓库(进入项目根目录)</p>
-<blockquote>
+      <h4 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h4><h6 id="初始化仓库-进入项目根目录"><a href="#初始化仓库-进入项目根目录" class="headerlink" title="初始化仓库(进入项目根目录)"></a>初始化仓库(进入项目根目录)</h6><blockquote>
 <p>git init</p>
 </blockquote>
-</li>
-<li><p>将所有文件提交到索引仓库</p>
-<blockquote>
+<h6 id="显示工作目录和暂存区的状态"><a href="#显示工作目录和暂存区的状态" class="headerlink" title="显示工作目录和暂存区的状态"></a>显示工作目录和暂存区的状态</h6><blockquote>
+<p>git status</p>
+</blockquote>
+<h6 id="将所有文件提交到索引仓库"><a href="#将所有文件提交到索引仓库" class="headerlink" title="将所有文件提交到索引仓库"></a>将所有文件提交到索引仓库</h6><blockquote>
 <p>git add .</p>
 </blockquote>
-</li>
-<li><p>将索引仓库中的文件添加到git仓库</p>
-<blockquote>
+<h6 id="克隆远程仓库到本地目录localdir"><a href="#克隆远程仓库到本地目录localdir" class="headerlink" title="克隆远程仓库到本地目录localdir"></a>克隆远程仓库到本地目录localdir</h6><blockquote>
+<p>git clone <a href="http://github.xxx.git" target="_blank" rel="external">http://github.xxx.git</a> localdir</p>
+</blockquote>
+<h6 id="将索引仓库中的文件添加到git仓库"><a href="#将索引仓库中的文件添加到git仓库" class="headerlink" title="将索引仓库中的文件添加到git仓库"></a>将索引仓库中的文件添加到git仓库</h6><blockquote>
 <p>git commit -m “message”</p>
 </blockquote>
-</li>
-<li><p>将master分支推送到远程仓库master分支</p>
-<blockquote>
+<h6 id="将master分支推送到远程仓库master分支"><a href="#将master分支推送到远程仓库master分支" class="headerlink" title="将master分支推送到远程仓库master分支"></a>将master分支推送到远程仓库master分支</h6><blockquote>
 <p>git push origin master</p>
 </blockquote>
-</li>
-<li><p>切换分支</p>
-<blockquote>
+<h6 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h6><blockquote>
 <p>git checkout branchname</p>
 </blockquote>
-</li>
-<li><p>克隆仓库分支</p>
-<blockquote>
+<h6 id="克隆仓库分支"><a href="#克隆仓库分支" class="headerlink" title="克隆仓库分支"></a>克隆仓库分支</h6><blockquote>
 <p>git clone -b branch <a href="http://github.xxx.git" target="_blank" rel="external">http://github.xxx.git</a>  </p>
 </blockquote>
-</li>
-<li><p>拉取远程分支</p>
-<blockquote>
-<p>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;<br>git pull origin master:brantest  // 将远程主机origin的master分支拉取过来，与本地的brantest分支合并。<br>git pull origin master  // 将远程origin主机的master分支拉取过来和本地的当前分支进行合并。  </p>
+<h6 id="拉取远程分支"><a href="#拉取远程分支" class="headerlink" title="拉取远程分支"></a>拉取远程分支</h6><blockquote>
+<p>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;<br>git pull origin master:brantest  </p>
 </blockquote>
-</li>
-<li><p>将本地仓库追踪到远程仓库</p>
-<ol>
+<h6 id="将远程主机origin的master分支拉取过来，与本地的brantest分支合并。"><a href="#将远程主机origin的master分支拉取过来，与本地的brantest分支合并。" class="headerlink" title="将远程主机origin的master分支拉取过来，与本地的brantest分支合并。"></a>将远程主机<code>origin</code>的<code>master</code>分支拉取过来，与本地的<code>brantest</code>分支合并。</h6><blockquote>
+<p>git pull origin master  </p>
+</blockquote>
+<p>将远程<code>origin</code>主机的<code>master</code>分支拉取过来和本地的当前分支进行合并。  </p>
+<h6 id="强制拉取远程master分支-覆盖本地"><a href="#强制拉取远程master分支-覆盖本地" class="headerlink" title="强制拉取远程master分支(覆盖本地)"></a>强制拉取远程master分支(覆盖本地)</h6><blockquote>
+<p>git fetch origin master<br>  git reset –hard origin/master</p>
+</blockquote>
+<h6 id="拉取远程跟踪的"><a href="#拉取远程跟踪的" class="headerlink" title="拉取远程跟踪的"></a>拉取远程跟踪的</h6><blockquote>
+<p>git fetch -p</p>
+</blockquote>
+<h6 id="拉取远程分支并创建本地分支"><a href="#拉取远程分支并创建本地分支" class="headerlink" title="拉取远程分支并创建本地分支"></a>拉取远程分支并创建本地分支</h6><blockquote>
+<p>git fetch origin newbranch:remotebranch   </p>
+</blockquote>
+<h6 id="拉取远程分支remotebranch并创建本地分支newbranch"><a href="#拉取远程分支remotebranch并创建本地分支newbranch" class="headerlink" title="拉取远程分支remotebranch并创建本地分支newbranch"></a>拉取远程分支<code>remotebranch</code>并创建本地分支<code>newbranch</code></h6><blockquote>
+<p>git checkout newbranch</p>
+</blockquote>
+<h6 id="查看所有远程分支"><a href="#查看所有远程分支" class="headerlink" title="查看所有远程分支"></a>查看所有远程分支</h6><blockquote>
+<p>git branch -r</p>
+</blockquote>
+<h6 id="查看所有本地分支"><a href="#查看所有本地分支" class="headerlink" title="查看所有本地分支"></a>查看所有本地分支</h6><blockquote>
+<p>git branch</p>
+</blockquote>
+<h6 id="删除本地分支branchname"><a href="#删除本地分支branchname" class="headerlink" title="删除本地分支branchname"></a>删除本地分支branchname</h6><blockquote>
+<p>git branch -D branchname</p>
+</blockquote>
+<h6 id="查看本地分支和远程分支的跟踪关系"><a href="#查看本地分支和远程分支的跟踪关系" class="headerlink" title="查看本地分支和远程分支的跟踪关系"></a>查看本地分支和远程分支的跟踪关系</h6><blockquote>
+<p>git branch -vv</p>
+</blockquote>
+<h6 id="跟踪远程分支"><a href="#跟踪远程分支" class="headerlink" title="跟踪远程分支"></a>跟踪远程分支</h6><blockquote>
+<p>git branch –set-upstream branch-name origin/branch-name  </p>
+</blockquote>
+<h6 id="将本地branch-name分支追踪远程分支origin-branch-name"><a href="#将本地branch-name分支追踪远程分支origin-branch-name" class="headerlink" title="将本地branch-name分支追踪远程分支origin/branch-name"></a>将本地<code>branch-name</code>分支追踪远程分支<code>origin/branch-name</code></h6><blockquote>
+<p>git branch -u origin/branch-name</p>
+</blockquote>
+<h6 id="设置当前分支跟踪远程分支origin-serverfix"><a href="#设置当前分支跟踪远程分支origin-serverfix" class="headerlink" title="设置当前分支跟踪远程分支origin/serverfix"></a>设置当前分支跟踪远程分支<code>origin/serverfix</code></h6><h6 id="将本地仓库追踪到远程仓库"><a href="#将本地仓库追踪到远程仓库" class="headerlink" title="将本地仓库追踪到远程仓库"></a>将本地仓库追踪到远程仓库</h6><ul>
 <li>初始化本地仓库</li>
 <li>将本地master分支追踪到远程分支，远程分支别名origin，运行以下命令:<blockquote>
 <p>git remote add origin <a href="https://github.com/jat0824/process_schedule.git" target="_blank" rel="external">https://github.com/jat0824/process_schedule.git</a></p>
 </blockquote>
 </li>
 <li>将本地文件提交到仓库并推送到远程仓库<blockquote>
-<p>git add .<br>   git commit -m “message”<br>   git push origin master</p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li><p>新建本地分支并切换到新分支，推到远程仓库</p>
-<blockquote>
-<p>git checkout -b newbranch<br>git push origin newbranch</p>
-</blockquote>
-</li>
-<li><p>新建远程分支</p>
-<blockquote>
-<p>git push origin newbranch:newbranch   // 新建远程分支newbranch</p>
-</blockquote>
-</li>
-<li><p>删除远程分支</p>
-<blockquote>
-<p>git push origin :branch   // 删除branch分支</p>
+<p>git add .<br>git commit -m “message”<br>git push origin master</p>
 </blockquote>
 </li>
 </ul>
+<h6 id="新建本地分支并切换到新分支，推到远程仓库"><a href="#新建本地分支并切换到新分支，推到远程仓库" class="headerlink" title="新建本地分支并切换到新分支，推到远程仓库"></a>新建本地分支并切换到新分支，推到远程仓库</h6><blockquote>
+<p>git checkout -b newbranch<br>git push origin newbranch</p>
+</blockquote>
+<h6 id="新建远程分支newbranch"><a href="#新建远程分支newbranch" class="headerlink" title="新建远程分支newbranch"></a>新建远程分支newbranch</h6><blockquote>
+<p>git push origin newbranch:newbranch  </p>
+</blockquote>
+<h6 id="删除远程分支branch"><a href="#删除远程分支branch" class="headerlink" title="删除远程分支branch"></a>删除远程分支branch</h6><blockquote>
+<p>git push origin :branch </p>
+</blockquote>
+<h6 id="比较两个分支间所有变更的文件列表"><a href="#比较两个分支间所有变更的文件列表" class="headerlink" title="比较两个分支间所有变更的文件列表"></a>比较两个分支间所有变更的文件列表</h6><blockquote>
+<p>git diff branch1 branch2 –stat   //  –stat 是显示文件列表, 否则是文件内容diff</p>
+</blockquote>
+<h6 id="查看本地具体文件改动细节"><a href="#查看本地具体文件改动细节" class="headerlink" title="查看本地具体文件改动细节"></a>查看本地具体文件改动细节</h6><blockquote>
+<p>git diff filename</p>
+</blockquote>
+<h6 id="git-diff-M-的消除"><a href="#git-diff-M-的消除" class="headerlink" title="git diff ^M 的消除"></a>git diff ^M 的消除</h6><blockquote>
+<p>git config –global core.whitespace cr-at-eol</p>
+</blockquote>
+<h6 id="分支重命名"><a href="#分支重命名" class="headerlink" title="分支重命名"></a>分支重命名</h6><blockquote>
+<p>git branch - m old_name new_name</p>
+</blockquote>
+<h6 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h6><blockquote>
+<p>git checkout master<br>git merge branch1   // 出现冲突需要手动解决或使用合并工具<br>git mergetool   // 使用合并工具解决冲突</p>
+</blockquote>
 
     
   </div>
