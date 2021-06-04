@@ -7,25 +7,25 @@
 <head>
   <meta charset="utf-8">
   
-  <title>MAC终端命令 | Hexo</title>
+  <title>Laravel-admin学习 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Mac," />
+    <meta name="keywords" content="Laravel项目," />
   
 
-  <meta name="description" content="将文件内容传输到剪切板 cat a.txt | pbcopy   // 将a.txt文件类容写入剪切板，相当于 cmd + Cpbpaste              // 将刚刚存入剪切板的a.txt内容复制到终端，相当于 cmd + v  从远程Linux服务器上传下载文件–scp命令 下载文件夹 scp -r 远程登录服务器用户名@远程服务器ip地址:/下载文件夹的目录 本地目录   下载文">
-<meta name="keywords" content="Mac">
+  <meta name="description" content="文档https://laravel-admin.org/docs/zh 常用命令 安装  composer require encore/laravel-adminphp artisan vendor:publish –provider=”Encore\Admin\AdminServiceProvider”php artisan admin:install   添加控制器  php artisan">
+<meta name="keywords" content="Laravel项目">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MAC终端命令">
-<meta property="og:url" content="http://yoursite.com/2019/05/08/MAC终端命令/index.html">
+<meta property="og:title" content="Laravel-admin学习">
+<meta property="og:url" content="http://yoursite.com/2020/02/22/Laravel-admin学习/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="将文件内容传输到剪切板 cat a.txt | pbcopy   // 将a.txt文件类容写入剪切板，相当于 cmd + Cpbpaste              // 将刚刚存入剪切板的a.txt内容复制到终端，相当于 cmd + v  从远程Linux服务器上传下载文件–scp命令 下载文件夹 scp -r 远程登录服务器用户名@远程服务器ip地址:/下载文件夹的目录 本地目录   下载文">
-<meta property="og:updated_time" content="2019-05-09T07:30:27.000Z">
+<meta property="og:description" content="文档https://laravel-admin.org/docs/zh 常用命令 安装  composer require encore/laravel-adminphp artisan vendor:publish –provider=”Encore\Admin\AdminServiceProvider”php artisan admin:install   添加控制器  php artisan">
+<meta property="og:updated_time" content="2020-02-22T07:24:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MAC终端命令">
-<meta name="twitter:description" content="将文件内容传输到剪切板 cat a.txt | pbcopy   // 将a.txt文件类容写入剪切板，相当于 cmd + Cpbpaste              // 将刚刚存入剪切板的a.txt内容复制到终端，相当于 cmd + v  从远程Linux服务器上传下载文件–scp命令 下载文件夹 scp -r 远程登录服务器用户名@远程服务器ip地址:/下载文件夹的目录 本地目录   下载文">
+<meta name="twitter:title" content="Laravel-admin学习">
+<meta name="twitter:description" content="文档https://laravel-admin.org/docs/zh 常用命令 安装  composer require encore/laravel-adminphp artisan vendor:publish –provider=”Encore\Admin\AdminServiceProvider”php artisan admin:install   添加控制器  php artisan">
 
   
 
@@ -151,20 +151,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#将文件内容传输到剪切板"><span class="toc-text">将文件内容传输到剪切板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#从远程Linux服务器上传下载文件–scp命令"><span class="toc-text">从远程Linux服务器上传下载文件–scp命令</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#终端命令"><span class="toc-text">终端命令</span></a>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文档"><span class="toc-text">文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前端"><span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数传递"><span class="toc-text">参数传递</span></a></li></ol></li></ol></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-MAC终端命令" class="article article-type-post" itemprop="blogPost">
+   <article id="post-Laravel-admin学习" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">MAC终端命令</h1>
+    <h1 class="post-title">Laravel-admin学习</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2019.05.08</span>
+        <span>2020.02.22</span>
       </span>
 
       
@@ -177,7 +177,7 @@
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/Mac/">Mac</a>
+    <a class="article-category-link" href="/categories/Laravel/">Laravel</a>
   </span>
 
 
@@ -197,35 +197,30 @@
 
   <div class="article-content">
     
-      <h5 id="将文件内容传输到剪切板"><a href="#将文件内容传输到剪切板" class="headerlink" title="将文件内容传输到剪切板"></a>将文件内容传输到剪切板</h5><blockquote>
-<p>cat a.txt | pbcopy   // 将a.txt文件类容写入剪切板，相当于 cmd + C<br>pbpaste              // 将刚刚存入剪切板的a.txt内容复制到终端，相当于 cmd + v</p>
-</blockquote>
-<h5 id="从远程Linux服务器上传下载文件–scp命令"><a href="#从远程Linux服务器上传下载文件–scp命令" class="headerlink" title="从远程Linux服务器上传下载文件–scp命令"></a>从远程Linux服务器上传下载文件–scp命令</h5><ul>
-<li>下载文件夹<blockquote>
-<p>scp -r 远程登录服务器用户名@远程服务器ip地址:/下载文件夹的目录 本地目录</p>
-</blockquote>
-</li>
-<li>下载文件<blockquote>
-<p>scp 远程登录服务器用户名@远程服务器ip地址:/下载文件的目录 本地目录</p>
-</blockquote>
-</li>
-<li>上传文件夹<blockquote>
-<p>cd 上传文件的目录<br>scp -r 本地目录 远程登录服务器用户名@远程服务器ip地址:/文件上传的目录地址</p>
-</blockquote>
-</li>
-</ul>
-<h4 id="终端命令"><a href="#终端命令" class="headerlink" title="终端命令"></a>终端命令</h4><ul>
-<li><p>复制整个文件夹</p>
+      <h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p><a href="https://laravel-admin.org/docs/zh" target="_blank" rel="external">https://laravel-admin.org/docs/zh</a></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li><p>安装</p>
 <blockquote>
-<p>cp -R 路径1 路径2 # -R是对目录进行递归操作</p>
+<p>composer require encore/laravel-admin<br>php artisan vendor:publish –provider=”Encore\Admin\AdminServiceProvider”<br>php artisan admin:install</p>
 </blockquote>
 </li>
-<li><p>查看php扩展</p>
+<li><p>添加控制器</p>
 <blockquote>
-<p>php -i |less     // 查看配置文件在哪里，编译参数<br>php -m |less  // 查看php加载的模块</p>
+<p>php artisan admin:make UserController –model=App\User    //Linux系统需要转义反斜杠</p>
 </blockquote>
 </li>
+<li><p>添加行操作</p>
+<blockquote>
+<p>php artisan admin:action Paper\Analysis –grid-row –name=”考卷分析”</p>
+</blockquote>
+</li>
+<li></li>
 </ul>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h4 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h4><p>Laravel的with方法：</p>
+<blockquote>
+<p>return view(‘admin.analysis.compare’)-&gt;with(‘compare’, $compare);</p>
+</blockquote>
+<p>当传递的是多维数组时，可转换为json格式后进行js处理：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> compare = <span class="built_in">eval</span>(<span class="string">'&lt;?php echo json_encode($compare); ?&gt;'</span>);</div><div class="line">       <span class="keyword">var</span> year = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">       <span class="keyword">var</span> avg = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">       <span class="keyword">for</span> (x <span class="keyword">in</span> compare) &#123;</div><div class="line">           year[x] = compare[x].year;</div><div class="line">           avg[x] = compare[x].avg;</div><div class="line">       &#125;</div></pre></td></tr></table></figure></p>
 
     
   </div>
@@ -263,10 +258,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2019/05/08/HTTP状态码/">
+    <a class="show pull-left" href="/2019/08/01/Linux命令/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2019/05/09/Mac环境搭建-MNMP-Nginx-PHP7-1-thinkphp3-2为例/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>

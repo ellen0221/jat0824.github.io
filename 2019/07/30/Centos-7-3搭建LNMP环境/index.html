@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Centos 7.3搭建LNMP环境 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="后台,PHP,Java" />
+  
+
+  <meta name="description" content="1.关闭防火墙和selinux打开文件selinux:    vim /etc/sysconfig/selinux  将文件中SELINUX=enforcing改为disabled，然后执行”setenforce 0″不用重启地关闭selinux。 关闭放火墙:    systemctl stop firewalld.service  2.安装软件2.1 MYSQL安装下载mysql的repo源:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos 7.3搭建LNMP环境">
+<meta property="og:url" content="http://yoursite.com/2019/07/30/Centos-7-3搭建LNMP环境/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.关闭防火墙和selinux打开文件selinux:    vim /etc/sysconfig/selinux  将文件中SELINUX=enforcing改为disabled，然后执行”setenforce 0″不用重启地关闭selinux。 关闭放火墙:    systemctl stop firewalld.service  2.安装软件2.1 MYSQL安装下载mysql的repo源:">
+<meta property="og:updated_time" content="2020-05-14T03:19:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Centos 7.3搭建LNMP环境">
+<meta name="twitter:description" content="1.关闭防火墙和selinux打开文件selinux:    vim /etc/sysconfig/selinux  将文件中SELINUX=enforcing改为disabled，然后执行”setenforce 0″不用重启地关闭selinux。 关闭放火墙:    systemctl stop firewalld.service  2.安装软件2.1 MYSQL安装下载mysql的repo源:">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">-&gt;</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">-&gt;</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-关闭防火墙和selinux"><span class="toc-text">1.关闭防火墙和selinux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装软件"><span class="toc-text">2.安装软件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-MYSQL安装"><span class="toc-text">2.1 MYSQL安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-nginx安装"><span class="toc-text">2.2 nginx安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-安装php"><span class="toc-text">2.3 安装php</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-修改配置文件"><span class="toc-text">3.修改配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-修改Nginx配置文件"><span class="toc-text">3.1 修改Nginx配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-修改php-ini"><span class="toc-text">3.2 修改php.ini</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-修改php-fpm配置文件"><span class="toc-text">3.3 修改php-fpm配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-打开php-fpm服务"><span class="toc-text">3.4 打开php-fpm服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-测试nginx是否能解析php"><span class="toc-text">4. 测试nginx是否能解析php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他命令"><span class="toc-text">其他命令:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他安装"><span class="toc-text">其他安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置git项目目录-thinkphp3-2"><span class="toc-text">配置git项目目录(thinkphp3.2)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置git用户"><span class="toc-text">配置git用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#连接远程"><span class="toc-text">连接远程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署laravel-admin项目"><span class="toc-text">部署laravel-admin项目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nginx配置"><span class="toc-text">nginx配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#从github克隆项目代码"><span class="toc-text">从github克隆项目代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装依赖"><span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql创建数据库"><span class="toc-text">mysql创建数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改配置文件-env"><span class="toc-text">修改配置文件.env</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库迁移"><span class="toc-text">数据库迁移</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改文件夹权限"><span class="toc-text">修改文件夹权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将本地数据库中需要的数据表导出为sql文件，上传到github，到服务器执行，完成数据库数据迁移"><span class="toc-text">将本地数据库中需要的数据表导出为sql文件，上传到github，到服务器执行，完成数据库数据迁移</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#汉化"><span class="toc-text">汉化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问"><span class="toc-text">访问</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Centos-7-3搭建LNMP环境" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Centos 7.3搭建LNMP环境</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.07.30</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Xj</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/环境搭建/">环境搭建</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="1-关闭防火墙和selinux"><a href="#1-关闭防火墙和selinux" class="headerlink" title="1.关闭防火墙和selinux"></a>1.关闭防火墙和selinux</h3><p>打开文件selinux:  </p>
+<blockquote>
+<p>vim /etc/sysconfig/selinux</p>
+</blockquote>
+<p>将文件中SELINUX=enforcing改为disabled，然后执行”setenforce 0″不用重启地关闭selinux。</p>
+<p>关闭放火墙:  </p>
+<blockquote>
+<p>systemctl stop firewalld.service</p>
+</blockquote>
+<h3 id="2-安装软件"><a href="#2-安装软件" class="headerlink" title="2.安装软件"></a>2.安装软件</h3><h4 id="2-1-MYSQL安装"><a href="#2-1-MYSQL安装" class="headerlink" title="2.1 MYSQL安装"></a>2.1 MYSQL安装</h4><p>下载mysql的repo源:  </p>
+<blockquote>
+<p>wget <a href="http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm" target="_blank" rel="external">http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</a></p>
+</blockquote>
+<p>安装mysql-community-release-el7-5.noarch.rpm包: </p>
+<blockquote>
+<p>rpm -ivh mysql-community-release-el7-5.noarch.rpm</p>
+</blockquote>
+<p>安装MYSQL:</p>
+<blockquote>
+<p>sudo yum install -y  mysql-server</p>
+</blockquote>
+<p>更改MYSQL用户权限:</p>
+<blockquote>
+<p>sudo chown -R root:root /var/lib/mysql</p>
+</blockquote>
+<p>开启服务：</p>
+<blockquote>
+<p>service mysqld start</p>
+</blockquote>
+<p>如果已开启则重启服务:</p>
+<blockquote>
+<p>systemctl restart mysql.service</p>
+</blockquote>
+<p>登录，并修改密码:</p>
+<blockquote>
+<p>mysql -u root<br>  mysql &gt; use mysql;<br>  mysql &gt; update user set password=password(‘123456’) where User=’root’ and Host=’localhost’;<br>  mysql &gt; flush privileges;<br>  mysql &gt; exit;</p>
+</blockquote>
+<p>登录出现报错：ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/var/lib/mysql/mysql.sock’ (2)</p>
+<p>通过以下命令查看mysql的mysql.sock文件在哪个路径</p>
+<blockquote>
+<p>ps -aux | grep mysql</p>
+</blockquote>
+<p>发现路径不一致：进程显示的路径为<code>/tmp/mysql.sock</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mysql    22202  0.1 11.6 1680648 219584 ?      Sl   17:19   0:00 /usr/local/mysql/bin/mysqld </div><div class="line">--basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin </div><div class="line">--user=mysql --log-error=/usr/local/mysql/data/izwz9d6j1hy2qqg95xyv8kz.err --open-files-limit=8192 </div><div class="line">--pid-file=/usr/local/mysql/data/izwz9d6j1hy2qqg95xyv8kz.pid </div><div class="line">--socket=/tmp/mysql.sock --port=3306</div></pre></td></tr></table></figure></p>
+<p>解决：修改<code>/etc/my.cnf</code>文件的socket路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[client]</div><div class="line">port = 3306</div><div class="line">socket = /tmp/mysql.sock</div></pre></td></tr></table></figure>
+<p>参考：<a href="https://blog.csdn.net/hjf161105/article/details/78850658" target="_blank" rel="external">https://blog.csdn.net/hjf161105/article/details/78850658</a></p>
+<p>然后重启mysqld服务：</p>
+<blockquote>
+<p>service mysqld restart</p>
+</blockquote>
+<h4 id="2-2-nginx安装"><a href="#2-2-nginx安装" class="headerlink" title="2.2 nginx安装"></a>2.2 nginx安装</h4><p>下载对应当前系统版本的nginx包:</p>
+<blockquote>
+<p>wget <a href="http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm" target="_blank" rel="external">http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</a></p>
+</blockquote>
+<p>建立nginx的yum仓库(默认yum是没有nginx的):</p>
+<blockquote>
+<p>rpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpm</p>
+</blockquote>
+<p>下载并安装nginx:</p>
+<blockquote>
+<p>yum install -y nginx</p>
+</blockquote>
+<p>启动nginx:</p>
+<blockquote>
+<p>systemctl start nginx.service</p>
+</blockquote>
+<p>设置开机自启动:</p>
+<blockquote>
+<p>systemctl enable nginx.service</p>
+</blockquote>
+<p>启动出错，通过以下命令查看nginx服务状态</p>
+<blockquote>
+<p>systemctl status nginx.service</p>
+</blockquote>
+<p>发现：是由于端口被占用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">● nginx.service - The nginx HTTP and reverse proxy server</div><div class="line">   Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)</div><div class="line">   Active: failed (Result: exit-code) since Fri 2020-04-17 17:41:34 CST; 7s ago</div><div class="line">  Process: 1276 ExecStart=/usr/sbin/nginx (code=exited, status=1/FAILURE)</div><div class="line">  Process: 1273 ExecStartPre=/usr/sbin/nginx -t (code=exited, status=0/SUCCESS)</div><div class="line">  Process: 1272 ExecStartPre=/usr/bin/rm -f /run/nginx.pid (code=exited, status=0/SUCCESS)</div><div class="line"></div><div class="line">Apr 17 17:41:32 izwz9d6j1hy2qqg95xyv8kz nginx[1276]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</div><div class="line">Apr 17 17:41:32 izwz9d6j1hy2qqg95xyv8kz nginx[1276]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</div><div class="line">Apr 17 17:41:33 izwz9d6j1hy2qqg95xyv8kz nginx[1276]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</div><div class="line">Apr 17 17:41:33 izwz9d6j1hy2qqg95xyv8kz nginx[1276]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</div><div class="line">Apr 17 17:41:34 izwz9d6j1hy2qqg95xyv8kz nginx[1276]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</div><div class="line">Apr 17 17:41:34 izwz9d6j1hy2qqg95xyv8kz nginx[1276]: nginx: [emerg] still could not bind()</div><div class="line">Apr 17 17:41:34 izwz9d6j1hy2qqg95xyv8kz systemd[1]: nginx.service: control process exited, code=exited status=1</div><div class="line">Apr 17 17:41:34 izwz9d6j1hy2qqg95xyv8kz systemd[1]: Failed to start The nginx HTTP and reverse proxy server.</div><div class="line">Apr 17 17:41:34 izwz9d6j1hy2qqg95xyv8kz systemd[1]: Unit nginx.service entered failed state.</div><div class="line">Apr 17 17:41:34 izwz9d6j1hy2qqg95xyv8kz systemd[1]: nginx.service failed.</div></pre></td></tr></table></figure></p>
+<p>查看端口使用情况：被apache占用了</p>
+<blockquote>
+<p>netstat -ntlp</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Active Internet connections (only servers)</div><div class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name</div><div class="line">tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      2873/httpd</div><div class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2879/sshd</div><div class="line">tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      2873/httpd</div><div class="line">tcp        0      0 127.0.0.1:15772         0.0.0.0:*               LISTEN      943/staragent-core</div><div class="line">tcp        2      0 127.0.0.1:32000         0.0.0.0:*               LISTEN      1546/java</div><div class="line">tcp6       0      0 :::3306                 :::*                    LISTEN      850/mysqld</div></pre></td></tr></table></figure>
+<p>杀死进程：</p>
+<blockquote>
+<p>kill 2873</p>
+</blockquote>
+<p>重新启动nginx</p>
+<h4 id="2-3-安装php"><a href="#2-3-安装php" class="headerlink" title="2.3 安装php"></a>2.3 安装php</h4><p>rpm 安装 Php7 相应的 yum源:</p>
+<blockquote>
+<p>rpm -Uvh <a href="https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm" target="_blank" rel="external">https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</a><br>  rpm -Uvh <a href="https://mirror.webtatic.com/yum/el7/webtatic-release.rpm" target="_blank" rel="external">https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</a></p>
+</blockquote>
+<p>安装php7.0:</p>
+<blockquote>
+<p>yum install -y php70w</p>
+</blockquote>
+<p>安装php7.0扩展:</p>
+<blockquote>
+<p>yum install php70w php70w-fpm php70w-cli php70w-common php70w-devel php70w-gd php70w-pdo php70w-mysql php70w-mcrypt php70w-mbstring php70w-bcmath php70w-xml php70w-pecl-redis php70w-process php70w-intl php70w-xmlrpc php70w-soap php70w-ldap php70w-opcache</p>
+</blockquote>
+<p>安装php7.1:</p>
+<blockquote>
+<p>yum install -y php71w</p>
+</blockquote>
+<p>安装php7.1扩展:</p>
+<blockquote>
+<p>yum install php71w php71w-fpm php71w-cli php71w-common php71w-devel php71w-gd php71w-pdo php71w-mysql php71w-mcrypt php71w-mbstring php71w-bcmath php71w-xml php71w-pecl-redis php71w-process php71w-intl php71w-xmlrpc php71w-soap php71w-ldap php71w-opcache</p>
+</blockquote>
+<p>设置开机自启动：</p>
+<blockquote>
+<p>systemctl enable php-fpm.service</p>
+</blockquote>
+<h3 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3.修改配置文件"></a>3.修改配置文件</h3><h4 id="3-1-修改Nginx配置文件"><a href="#3-1-修改Nginx配置文件" class="headerlink" title="3.1 修改Nginx配置文件"></a>3.1 修改Nginx配置文件</h4><p>修改nginx.conf文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">        listen       80 default_server;</div><div class="line">        listen       [::]:80 default_server;</div><div class="line">        server_name  _;</div><div class="line">        root         /usr/share/nginx/html;</div><div class="line"></div><div class="line">        # Load configuration files for the default server block.</div><div class="line">        include /etc/nginx/default.d/*.conf;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">                # index index.php index.html;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        # 添加这部分</div><div class="line">        location ~ \.php$ &#123;</div><div class="line">            root           /usr/share/nginx/html;</div><div class="line">            fastcgi_pass   127.0.0.1:9000;</div><div class="line">            fastcgi_index  index.php;</div><div class="line">            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</div><div class="line">            include        fastcgi_params;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>default.conf文件位置：（/etc/nginx/conf.d/default.conf）:</p>
+<blockquote>
+<p>vim /etc/nginx/conf.d/default.conf</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       80;</div><div class="line">    server_name  localhost;</div><div class="line"></div><div class="line">    #charset koi8-r;</div><div class="line">    #access_log  /var/log/nginx/host.access.log  main;</div><div class="line"></div><div class="line">    root   /usr/share/nginx/html;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">        index index.html index.htm index.php;</div><div class="line">        include  /etc/nginx/conf.d/php-fpm;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    error_page  404              /404.html;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>新建php-fpm文件(配置php解析):</p>
+<blockquote>
+<p>vim /etc/nginx/conf.d/php-fpm</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">location ~ \.php$ &#123;</div><div class="line">    try_files      $uri = 404;</div><div class="line">    fastcgi_pass   127.0.0.1:9000;</div><div class="line">    fastcgi_index  index.php;</div><div class="line">    fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;</div><div class="line">    include        fastcgi_params;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="3-2-修改php-ini"><a href="#3-2-修改php-ini" class="headerlink" title="3.2 修改php.ini"></a>3.2 修改php.ini</h4><blockquote>
+<p>sudo vim /etc/php.ini</p>
+</blockquote>
+<p>找到cgi.fix_pathinfo选项，去掉注释;，然后将值设置为0:</p>
+<blockquote>
+<p>cgi.fix_pathinfo=0;</p>
+</blockquote>
+<h4 id="3-3-修改php-fpm配置文件"><a href="#3-3-修改php-fpm配置文件" class="headerlink" title="3.3 修改php-fpm配置文件"></a>3.3 修改php-fpm配置文件</h4><p>php-fpm配置文件位置：（/etc/php-fpm.d/www.conf）</p>
+<blockquote>
+<p>vim /etc/php-fpm.d/www.conf</p>
+</blockquote>
+<p>修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">user =nginx</div><div class="line">​group=nginx</div></pre></td></tr></table></figure>
+<h4 id="3-4-打开php-fpm服务"><a href="#3-4-打开php-fpm服务" class="headerlink" title="3.4 打开php-fpm服务"></a>3.4 打开php-fpm服务</h4><blockquote>
+<p>service php-fpm start</p>
+</blockquote>
+<h3 id="4-测试nginx是否能解析php"><a href="#4-测试nginx是否能解析php" class="headerlink" title="4. 测试nginx是否能解析php"></a>4. 测试nginx是否能解析php</h3><p>为了方便开发部署，将nginx配置文件中定义的root路径<code>/usr/share/nginx/html</code>软链接到<code>~/</code></p>
+<blockquote>
+<p>ln -s /usr/share/nginx/html ~/<br>cd<br>ll  </p>
+</blockquote>
+<p>可看到<code>~/</code>目录下已经有一个html文件夹并链接到<code>/usr/share/nginx/html</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@xxxxx ~]# ll</div><div class="line">total 16</div><div class="line">lrwxrwxrwx 1 root root   22 Jul 31 18:20 html -&gt; /usr/share/nginx/html/</div><div class="line">-rw-r--r-- 1 root root 6140 Nov 12  2015 mysql-community-release-el7-5.noarch.rpm</div><div class="line">-rw-r--r-- 1 root root 4680 Jul 15  2014 nginx-release-centos-7-0.el7.ngx.noarch.rpm</div></pre></td></tr></table></figure>
+<p>现在就可以在<code>~/html</code>中添加测试文件啦！</p>
+<blockquote>
+<p>cd ~/html<br>vim phpinfo.php</p>
+</blockquote>
+<p>输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">phpinfo();</div></pre></td></tr></table></figure></p>
+<p>按<code>esc</code>后输入:wq再按回车保存并退出</p>
+<p>访问localhost/phpinfo.php看到php版本信息界面，即配置成功！</p>
+<p><strong>参考博客:<a href="https://blog.csdn.net/wszll_alex/article/details/76285324" target="_blank" rel="external">https://blog.csdn.net/wszll_alex/article/details/76285324</a></strong> </p>
+<h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令:"></a>其他命令:</h3><p>修改权限: </p>
+<blockquote>
+<p>chmod -R 755 /www/    // -R参数表示递归为该目录下的所有文件修改权限</p>
+</blockquote>
+<p>修改用户和组:</p>
+<blockquote>
+<p>chown -R root:root /www/  // root:root 表示修改用户:组均为root</p>
+</blockquote>
+<p>查看nginx进程运行情况:</p>
+<blockquote>
+<p>ps -aux|grep nginx // 也可将nginx替换为php-fpm来查看php-fpm进程</p>
+</blockquote>
+<h3 id="其他安装"><a href="#其他安装" class="headerlink" title="其他安装"></a>其他安装</h3><p>安装Git:</p>
+<blockquote>
+<p>yum install git</p>
+</blockquote>
+<p>安装unzip:</p>
+<blockquote>
+<p>yum install unzip</p>
+</blockquote>
+<p>安装composer:</p>
+<blockquote>
+<p>php -r “copy(‘<a href="https://install.phpcomposer.com/installer" target="_blank" rel="external">https://install.phpcomposer.com/installer</a>‘, ‘composer-setup.php’);”<br>php composer-setup.php  </p>
+</blockquote>
+<p>移动 composer.phar，这样 composer 就可以进行全局调用:</p>
+<blockquote>
+<p>mv composer.phar /usr/local/bin/composer</p>
+</blockquote>
+<p>切换为国内镜像:</p>
+<blockquote>
+<p>composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com" target="_blank" rel="external">https://packagist.phpcomposer.com</a></p>
+</blockquote>
+<p>更新 composer:</p>
+<blockquote>
+<p>composer selfupdate</p>
+</blockquote>
+<h3 id="配置git项目目录-thinkphp3-2"><a href="#配置git项目目录-thinkphp3-2" class="headerlink" title="配置git项目目录(thinkphp3.2)"></a>配置git项目目录(thinkphp3.2)</h3><h4 id="配置git用户"><a href="#配置git用户" class="headerlink" title="配置git用户"></a>配置git用户</h4><p>查看~/.gitconfig配置文件,可看到是否设置了git用户名和邮箱</p>
+<blockquote>
+<p>cat ~/.gitconfig  </p>
+</blockquote>
+<p>设置git用户名和邮箱</p>
+<blockquote>
+<p>git config –global user.name “yourname”<br>git config –global user.email “youremail@xx.com”</p>
+</blockquote>
+<p>为设置好的用户创建ssh key</p>
+<blockquote>
+<p>ssh-keygen -t rsa -C “youremail@xx.com” // 填入刚刚设置的邮箱，一路回车</p>
+</blockquote>
+<p>查看已创建的ssh key</p>
+<blockquote>
+<p>cat ~/.ssh/id_rsa.pub</p>
+</blockquote>
+<p>复制id_rsa.pub中的内容到自己的github上添加新的SSH Key</p>
+<h4 id="连接远程"><a href="#连接远程" class="headerlink" title="连接远程"></a>连接远程</h4><p>在github上新建repository<br>随后进入项目目录</p>
+<h3 id="部署laravel-admin项目"><a href="#部署laravel-admin项目" class="headerlink" title="部署laravel-admin项目"></a>部署laravel-admin项目</h3><p>官方文档部署参考：<a href="https://learnku.com/docs/laravel/5.7/deployment/2247#nginx" target="_blank" rel="external">https://learnku.com/docs/laravel/5.7/deployment/2247#nginx</a></p>
+<h4 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="section">server</span> &#123;</div><div class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</div><div class="line">    <span class="attribute">server_name</span> example.com;</div><div class="line">    <span class="attribute">root</span> /example.com/public;</div><div class="line"></div><div class="line">    <span class="attribute">add_header</span> X-Frame-Options <span class="string">"SAMEORIGIN"</span>;</div><div class="line">    <span class="attribute">add_header</span> X-XSS-Protection <span class="string">"1; mode=block"</span>;</div><div class="line">    <span class="attribute">add_header</span> X-Content-Type-Options <span class="string">"nosniff"</span>;</div><div class="line"></div><div class="line">    <span class="attribute">index</span> index.html index.htm index.php;</div><div class="line"></div><div class="line">    <span class="attribute">charset</span> utf-<span class="number">8</span>;</div><div class="line"></div><div class="line">    <span class="attribute">location</span> / &#123;</div><div class="line">        <span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.php?<span class="variable">$query_string</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="attribute">location</span> = /favicon.ico &#123; <span class="attribute">access_log</span> <span class="literal">off</span>; <span class="attribute">log_not_found</span> <span class="literal">off</span>; &#125;</div><div class="line">    <span class="attribute">location</span> = /robots.txt  &#123; <span class="attribute">access_log</span> <span class="literal">off</span>; <span class="attribute">log_not_found</span> <span class="literal">off</span>; &#125;</div><div class="line"></div><div class="line">    <span class="attribute">error_page</span> <span class="number">404</span> /index.php;</div><div class="line"></div><div class="line">    <span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</div><div class="line">        <span class="attribute">fastcgi_split_path_info</span><span class="regexp"> ^(.+\.php)(/.+)$</span>;</div><div class="line">        <span class="attribute">fastcgi_pass</span> unix:/var/run/php/php7.1-fpm.sock;</div><div class="line">        <span class="attribute">fastcgi_index</span> index.php;</div><div class="line">        <span class="attribute">include</span> fastcgi_params;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="attribute">location</span> <span class="regexp">~ /\.(?!well-known).*</span> &#123;</div><div class="line">        <span class="attribute">deny</span> all;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="从github克隆项目代码"><a href="#从github克隆项目代码" class="headerlink" title="从github克隆项目代码"></a>从github克隆项目代码</h4><blockquote>
+<p>git clone xxx.git</p>
+</blockquote>
+<h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><blockquote>
+<p>composer install<br>// 优化自动加载<br>composer install –optimize-autoloader –no-dev</p>
+</blockquote>
+<h4 id="mysql创建数据库"><a href="#mysql创建数据库" class="headerlink" title="mysql创建数据库"></a>mysql创建数据库</h4><blockquote>
+<p>mysql -u root -p<br>  create database table_name;</p>
+</blockquote>
+<h4 id="修改配置文件-env"><a href="#修改配置文件-env" class="headerlink" title="修改配置文件.env"></a>修改配置文件.env</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">DB_CONNECTION=mysql</div><div class="line">DB_HOST=127.0.0.1</div><div class="line">DB_PORT=3306</div><div class="line">DB_DATABASE=table_name</div><div class="line">DB_USERNAME=root</div><div class="line">DB_PASSWORD=password</div></pre></td></tr></table></figure>
+<p>然后生成key</p>
+<blockquote>
+<p>php artisan key:generate</p>
+</blockquote>
+<h4 id="数据库迁移"><a href="#数据库迁移" class="headerlink" title="数据库迁移"></a>数据库迁移</h4><blockquote>
+<p>php artisan admin:install</p>
+</blockquote>
+<p>执行时遇到报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes (SQL: alter table `users` add unique `users_email_unique`(`email`))</div><div class="line"></div><div class="line">解决方法：修改app/Providers/AppServiceProvider.php</div><div class="line"></div><div class="line">use Illuminate\Support\Facades\Schema;</div><div class="line">public function boot()</div><div class="line">    &#123;</div><div class="line">        //</div><div class="line">      Schema::defaultStringLength(191);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">进入数据库将生成的数据表删除后重新执行迁移命令</div></pre></td></tr></table></figure></p>
+<h4 id="修改文件夹权限"><a href="#修改文件夹权限" class="headerlink" title="修改文件夹权限"></a>修改文件夹权限</h4><blockquote>
+<p>chmod -R 777 public/<br>  chmod -R 777 storage/</p>
+</blockquote>
+<h4 id="将本地数据库中需要的数据表导出为sql文件，上传到github，到服务器执行，完成数据库数据迁移"><a href="#将本地数据库中需要的数据表导出为sql文件，上传到github，到服务器执行，完成数据库数据迁移" class="headerlink" title="将本地数据库中需要的数据表导出为sql文件，上传到github，到服务器执行，完成数据库数据迁移"></a>将本地数据库中需要的数据表导出为sql文件，上传到github，到服务器执行，完成数据库数据迁移</h4><p>进入sql文件目录下执行：</p>
+<blockquote>
+<p>mysql -u root -p123456<br>  use table_name;<br>  source file.sql;</p>
+</blockquote>
+<h4 id="汉化"><a href="#汉化" class="headerlink" title="汉化"></a>汉化</h4><h4 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h4><p>最终访问<code>server_name/admin</code>即可进入登录页面</p>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">Xj</span>
+      <div class="donation-body">
+        <div class="tip text-center"></div>
+        <ul>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+          <li class="item">
+            <span></span>
+            <img src="" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/07/25/Bash命令/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/08/01/Linux命令/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

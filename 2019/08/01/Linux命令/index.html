@@ -7,25 +7,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>MAC终端命令 | Hexo</title>
+  <title>Linux命令 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Mac," />
+    <meta name="keywords" content="后台,PHP,Java" />
   
 
-  <meta name="description" content="将文件内容传输到剪切板 cat a.txt | pbcopy   // 将a.txt文件类容写入剪切板，相当于 cmd + Cpbpaste              // 将刚刚存入剪切板的a.txt内容复制到终端，相当于 cmd + v  从远程Linux服务器上传下载文件–scp命令 下载文件夹 scp -r 远程登录服务器用户名@远程服务器ip地址:/下载文件夹的目录 本地目录   下载文">
-<meta name="keywords" content="Mac">
+  <meta name="description" content="cat 和 grep、egrep结合查找文件中符合规则的字符串 cat xxx.log |grep ‘test:’ | egrep ‘“[0-9]+”:”[0-9,]+”‘   awk命令: 把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理 Month=echo ${Date} | awk “{print $1}” | awk -F- “{print $2}    变量">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MAC终端命令">
-<meta property="og:url" content="http://yoursite.com/2019/05/08/MAC终端命令/index.html">
+<meta property="og:title" content="Linux命令">
+<meta property="og:url" content="http://yoursite.com/2019/08/01/Linux命令/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="将文件内容传输到剪切板 cat a.txt | pbcopy   // 将a.txt文件类容写入剪切板，相当于 cmd + Cpbpaste              // 将刚刚存入剪切板的a.txt内容复制到终端，相当于 cmd + v  从远程Linux服务器上传下载文件–scp命令 下载文件夹 scp -r 远程登录服务器用户名@远程服务器ip地址:/下载文件夹的目录 本地目录   下载文">
-<meta property="og:updated_time" content="2019-05-09T07:30:27.000Z">
+<meta property="og:description" content="cat 和 grep、egrep结合查找文件中符合规则的字符串 cat xxx.log |grep ‘test:’ | egrep ‘“[0-9]+”:”[0-9,]+”‘   awk命令: 把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理 Month=echo ${Date} | awk “{print $1}” | awk -F- “{print $2}    变量">
+<meta property="og:updated_time" content="2019-08-07T03:43:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MAC终端命令">
-<meta name="twitter:description" content="将文件内容传输到剪切板 cat a.txt | pbcopy   // 将a.txt文件类容写入剪切板，相当于 cmd + Cpbpaste              // 将刚刚存入剪切板的a.txt内容复制到终端，相当于 cmd + v  从远程Linux服务器上传下载文件–scp命令 下载文件夹 scp -r 远程登录服务器用户名@远程服务器ip地址:/下载文件夹的目录 本地目录   下载文">
+<meta name="twitter:title" content="Linux命令">
+<meta name="twitter:description" content="cat 和 grep、egrep结合查找文件中符合规则的字符串 cat xxx.log |grep ‘test:’ | egrep ‘“[0-9]+”:”[0-9,]+”‘   awk命令: 把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理 Month=echo ${Date} | awk “{print $1}” | awk -F- “{print $2}    变量">
 
   
 
@@ -151,20 +150,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#将文件内容传输到剪切板"><span class="toc-text">将文件内容传输到剪切板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#从远程Linux服务器上传下载文件–scp命令"><span class="toc-text">从远程Linux服务器上传下载文件–scp命令</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#终端命令"><span class="toc-text">终端命令</span></a>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-和-grep、egrep结合查找文件中符合规则的字符串"><span class="toc-text">cat 和 grep、egrep结合查找文件中符合规则的字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#awk命令-把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理"><span class="toc-text">awk命令: 把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-MAC终端命令" class="article article-type-post" itemprop="blogPost">
+   <article id="post-Linux命令" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">MAC终端命令</h1>
+    <h1 class="post-title">Linux命令</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2019.05.08</span>
+        <span>2019.08.01</span>
       </span>
 
       
@@ -177,7 +176,7 @@
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/Mac/">Mac</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
   </span>
 
 
@@ -197,35 +196,13 @@
 
   <div class="article-content">
     
-      <h5 id="将文件内容传输到剪切板"><a href="#将文件内容传输到剪切板" class="headerlink" title="将文件内容传输到剪切板"></a>将文件内容传输到剪切板</h5><blockquote>
-<p>cat a.txt | pbcopy   // 将a.txt文件类容写入剪切板，相当于 cmd + C<br>pbpaste              // 将刚刚存入剪切板的a.txt内容复制到终端，相当于 cmd + v</p>
+      <h3 id="cat-和-grep、egrep结合查找文件中符合规则的字符串"><a href="#cat-和-grep、egrep结合查找文件中符合规则的字符串" class="headerlink" title="cat 和 grep、egrep结合查找文件中符合规则的字符串"></a>cat 和 grep、egrep结合查找文件中符合规则的字符串</h3><blockquote>
+<p>cat xxx.log |grep ‘test:’ | egrep ‘“[0-9]+”:”[0-9,]+”‘ </p>
 </blockquote>
-<h5 id="从远程Linux服务器上传下载文件–scp命令"><a href="#从远程Linux服务器上传下载文件–scp命令" class="headerlink" title="从远程Linux服务器上传下载文件–scp命令"></a>从远程Linux服务器上传下载文件–scp命令</h5><ul>
-<li>下载文件夹<blockquote>
-<p>scp -r 远程登录服务器用户名@远程服务器ip地址:/下载文件夹的目录 本地目录</p>
+<h3 id="awk命令-把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理"><a href="#awk命令-把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理" class="headerlink" title="awk命令: 把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理"></a>awk命令: 把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理</h3><blockquote>
+<p>Month=echo ${Date} | awk “{print $1}” | awk -F- “{print $2}  </p>
 </blockquote>
-</li>
-<li>下载文件<blockquote>
-<p>scp 远程登录服务器用户名@远程服务器ip地址:/下载文件的目录 本地目录</p>
-</blockquote>
-</li>
-<li>上传文件夹<blockquote>
-<p>cd 上传文件的目录<br>scp -r 本地目录 远程登录服务器用户名@远程服务器ip地址:/文件上传的目录地址</p>
-</blockquote>
-</li>
-</ul>
-<h4 id="终端命令"><a href="#终端命令" class="headerlink" title="终端命令"></a>终端命令</h4><ul>
-<li><p>复制整个文件夹</p>
-<blockquote>
-<p>cp -R 路径1 路径2 # -R是对目录进行递归操作</p>
-</blockquote>
-</li>
-<li><p>查看php扩展</p>
-<blockquote>
-<p>php -i |less     // 查看配置文件在哪里，编译参数<br>php -m |less  // 查看php加载的模块</p>
-</blockquote>
-</li>
-</ul>
+<p>变量Date的格式为YYYY-MM-DD HH:ii:ss；awk读入变量Date并按空格切片，$1即为YYYY-MM-DD部分，$2为HH:ii:ss部分，第二个awk命令用-F选项指定按分隔符<code>-</code>切片，最后取出的$2即为月份</p>
 
     
   </div>
@@ -263,10 +240,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2019/05/08/HTTP状态码/">
+    <a class="show pull-left" href="/2019/07/30/Centos-7-3搭建LNMP环境/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2019/05/09/Mac环境搭建-MNMP-Nginx-PHP7-1-thinkphp3-2为例/">
+    <a class="show pull-right" href="/2020/02/22/Laravel-admin学习/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
